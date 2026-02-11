@@ -1,0 +1,15 @@
+{
+  "name": "webtech-repo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "validate:hw1": "tsx scripts/validate.ts hw1",
+    "validate:hw1:html": "tsx scripts/validate.ts hw1 --html-only",
+    "validate:hw1:css": "tsx scripts/validate.ts hw1 --css-only"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
