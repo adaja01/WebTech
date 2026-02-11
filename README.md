@@ -1,10 +1,10 @@
 ﻿# Web Technology Course Assignments
 
-This monorepo contains all the assignments for INFOB3WT
+This monorepo contains all the assignments for INFOB2WT
 
 ## Structure
 
-- `hw1-faze/` - First assignment, static website in plain HTML/CSS with info on FaZe clan
+- `hw1/` - First assignment, static website in plain HTML/CSS with info on FaZe clan
 - Further assignments will be added as subdirectories
 
 ## W3C Validation
