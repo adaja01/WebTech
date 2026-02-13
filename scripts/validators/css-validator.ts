@@ -25,16 +25,16 @@ export async function validateCss(
 
   const data = (await response.json()) as W3CCssResponse;
 
-  const errors = data.cssvalidation.errors.map((err) => ({
+  const errors = data.cssvalidation?.errors?.map((err) => ({
     line: parseInt(err.line),
     message: err.message,
     extract: err.context,
-  }));
+  })) || [];
 
-  const warnings = data.cssvalidation.warnings.map((warn) => ({
+  const warnings = data.cssvalidation?.warnings?.map((warn) => ({
     line: parseInt(warn.line),
     message: warn.message,
-  }));
+  })) || [];
 
   return {
     filePath,
