@@ -10,3 +10,8 @@ Website for the first assignment of INFOB2WT, showcasing information about the F
 - `members.html` - page listing the members and teams
 - `achievements.html` - page highlighting the achievements and milestones
 - `contact.html` - page with contact information and social media links
+
+## Sources
+- [FaZe Clan Official Website](https://fazeclan.com/)
+- [FaZe Clan Wikipedia](https://en.wikipedia.org/wiki/FaZe_Clan)
+- [FaZe Clan Logos](https://logos-world.net/faze-logo)
