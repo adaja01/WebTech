@@ -16,3 +16,7 @@ This monorepo contains all the assignments for INFOB2WT
 - Use `npm run validate:hw1` to validate the HTML/CSS of the first assignment
 - Likewise for other assignments
 - Additionally, GitHub Actions will automatically run these scripts on push and pull requests
+
+## Contributing
+- Please ensure that your code is well-formatted by using the validation scripts or GitHub Actions
+- Work on separate branches to avoid conflicts and ensure a clean commit history
