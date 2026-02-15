@@ -1,1 +1,129 @@
-﻿
+﻿/* fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Cormorant+Garamond:ital,wght@1,300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+/* vars */
+:root {
+    --primary-color: #ff0000;
+    --secondary-color: #111111;
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --muted-text-color: rgba(255, 255, 255, 0.8);
+
+    --font-primary: 'Climate Crisis';
+    --font-secondary: 'Cormorant Garamond';
+    --font-body: 'Nunito Sans';
+}
+
+/* global */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: var(--font-body), sans-serif;
+    color: var(--text-color);
+    background: linear-gradient(180deg, var(--secondary-color), var(--background-color));
+    line-height: 1.6;
+}
+
+main {
+    flex: 1;
+}
+
+header {
+    background-color: var(--secondary-color);
+    padding: 1rem 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav__item {
+    text-transform: uppercase;
+}
+
+.nav__link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav__link:hover,
+.nav__link--active {
+    color: var(--primary-color);
+}
+
+footer {
+    background-color: #111111;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+.footer__text {
+    font-size: 0.9rem;
+    color: var(--muted-text-color);
+}
+
+/* index */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 2rem;
+}
+
+.hero__content {
+    align-content: end;
+}
+
+.hero__title {
+    font-family: var(--font-primary), sans-serif;
+    font-size: 6vw;
+    font-weight: 900;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.hero__subtitle {
+    font-family: var(--font-secondary), serif;
+    font-size: 3vw;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.hero__image {
+    width: 25vw;
+    height: auto;
+    border: 5px solid var(--primary-color);
+    border-radius: 10px;
+}
+
+/* adjust layout for wider screens */
+@media (min-width: 768px) {
+    .hero {
+        flex-direction: row;
+        justify-content: center;
+        text-align: right;
+    }
+
+    .hero__title,
+    .hero__subtitle {
+        max-width: 60%;
+    }
+
+    .hero__image {
+        max-width: 30%;
+    }
+}
