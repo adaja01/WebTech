@@ -5,4 +5,8 @@ Website for the first assignment of INFOB2WT, showcasing information about the F
 ## Structure
 - `assets/` - directory for images and other media assets
 - `css/` - directory for CSS files
-- `index.html` - main HTML file for the website
+- `index.html` - main page for the website
+- `history.html` - page detailing the history
+- `members.html` - page listing the members and teams
+- `achievements.html` - page highlighting the achievements and milestones
+- `contact.html` - page with contact information and social media links
