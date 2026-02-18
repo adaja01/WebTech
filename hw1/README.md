@@ -21,4 +21,4 @@ Website for the first assignment of INFOB2WT, showcasing information about the F
 ### Learning
 - [HTML](https://www.w3schools.com/html/)
 - [CSS](https://www.w3schools.com/css/)
-- And the slides of course!
+- And the lectures of course!
