@@ -158,4 +158,12 @@ footer {
         text-align: right;
         gap: 3rem;
     }
+
+    .body__index {
+        background:
+                linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), /* darken */
+                linear-gradient(rgba(255, 255, 0, 0.2), rgba(255, 255, 0, 0.2)), /* viva los pollos hermanos! */
+                url('../assets/images/index-bg.png') no-repeat fixed center;
+        background-size: cover;
+    }
 }

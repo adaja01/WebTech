@@ -18,6 +18,7 @@ Website for the first assignment of INFOB2WT, showcasing information about the F
 ### Assets
 - [FaZe Clan Logos](https://logos-world.net/faze-logo)
 - [Fonts](https://fonts.google.com/share?selection.family=Climate+Crisis:YEAR@1979|Cormorant+Garamond:ital,wght@1,300..700|Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000)
+- [Background Image (Screenshotted at around 4:51)](https://www.youtube.com/watch?v=CBM-NZdWyk4)
 ### Learning
 - [HTML](https://www.w3schools.com/html/)
 - [CSS](https://www.w3schools.com/css/)
