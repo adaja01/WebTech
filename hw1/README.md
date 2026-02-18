@@ -10,3 +10,15 @@ Website for the first assignment of INFOB2WT, showcasing information about the F
 - `members.html` - page listing the members and teams
 - `achievements.html` - page highlighting the achievements and milestones
 - `contact.html` - page with contact information and social media links
+
+## Sources
+### Team
+- [FaZe Clan Official Website](https://fazeclan.com/)
+- [FaZe Clan Wikipedia](https://en.wikipedia.org/wiki/FaZe_Clan)
+### Assets
+- [FaZe Clan Logos](https://logos-world.net/faze-logo)
+- [Fonts](https://fonts.google.com/share?selection.family=Climate+Crisis:YEAR@1979|Cormorant+Garamond:ital,wght@1,300..700|Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000)
+### Learning
+- [HTML](https://www.w3schools.com/html/)
+- [CSS](https://www.w3schools.com/css/)
+- And the lectures of course!
