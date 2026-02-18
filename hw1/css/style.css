@@ -19,6 +19,8 @@
 /* global */
 html {
     overscroll-behavior: none;
+    scrollbar-color: var(--primary-color) var(--background-color);
+    scrollbar-width: thin;
 }
 
 body {
