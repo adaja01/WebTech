@@ -53,6 +53,7 @@ header {
     list-style: none;
     display: flex;
     gap: clamp(1rem, 3vw, 3rem);
+    padding: 0;
 }
 
 .nav__item {
