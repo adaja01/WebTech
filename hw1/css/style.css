@@ -12,6 +12,11 @@
     --font-primary: 'Climate Crisis';
     --font-secondary: 'Cormorant Garamond';
     --font-body: 'Nunito Sans';
+
+    --clamp-0: clamp(0.9rem, 1vw, 1.1rem);
+    --clamp-1: clamp(1rem, 1.2vw, 1.5rem);
+    --clamp-2: clamp(1.2rem, 4vw, 2.5rem);
+    --clamp-3: clamp(3rem, 8vw, 6rem);
 }
 
 /* global */
@@ -47,7 +52,7 @@ header {
 .nav__list {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: clamp(1rem, 3vw, 3rem);
 }
 
 .nav__item {
@@ -55,6 +60,7 @@ header {
 }
 
 .nav__link {
+    font-size: var(--clamp-1);
     text-decoration: none;
     color: var(--text-color);
     font-weight: bold;
@@ -74,7 +80,7 @@ footer {
 }
 
 .footer__text {
-    font-size: 0.9rem;
+    font-size: var(--clamp-0);
     color: var(--muted-text-color);
 }
 
@@ -95,6 +101,7 @@ footer {
     justify-content: center;
     text-align: center;
     gap: 2rem;
+    padding: clamp(1rem, 5vw, 5rem);
 }
 
 .hero__content {
@@ -104,7 +111,7 @@ footer {
 
 .hero__title {
     font-family: var(--font-primary), sans-serif;
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: var(--clamp-3);
     font-weight: 900;
     color: var(--primary-color);
     text-transform: uppercase;
@@ -115,7 +122,7 @@ footer {
 
 .hero__subtitle {
     font-family: var(--font-secondary), serif;
-    font-size: clamp(1.2rem, 4vw, 2.5rem);
+    font-size: var(--clamp-2);
     color: var(--text-color);
     margin: 0;
     white-space: nowrap;
