@@ -15,6 +15,10 @@
 }
 
 /* global */
+html {
+    overscroll-behavior: none;
+}
+
 body {
     display: flex;
     flex-direction: column;
