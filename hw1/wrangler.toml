@@ -1,4 +1,4 @@
-﻿name = "hw1"
+name = "hw1"
 account_id = "${CLOUDFLARE_ACCOUNT_ID}"
 workers_dev = false
 route = "https://hw1.web-uu.pages.dev/*"
