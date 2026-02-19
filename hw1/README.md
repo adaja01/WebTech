@@ -10,8 +10,6 @@ Website for the first assignment of INFOB2WT, showcasing information about the F
 - `members.html` - page listing the members and teams
 - `achievements.html` - page highlighting the achievements and milestones
 - `contact.html` - page with contact information and social media links
-- `wrangler.toml` - configuration for cloud deployment for development purposes
-    - note that the development site is not public facing because of university policies
 
 ## Sources
 ### Team
