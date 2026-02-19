@@ -1,9 +1,2 @@
 name = "hw1"
-account_id = "${CLOUDFLARE_ACCOUNT_ID}"
-workers_dev = false
-route = "https://hw1.web-uu.pages.dev/*"
-zone_id = ""
-
-[site]
-  bucket = "./"
-  entry-point = ""
+pages_build_output_dir = "./"
