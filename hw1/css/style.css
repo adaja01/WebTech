@@ -10,9 +10,9 @@
     --font-secondary: 'Cormorant Garamond';
     --font-body: 'Nunito Sans';
 
-    --clamp-0: clamp(0.9rem, 1vw, 1.1rem);
-    --clamp-1: clamp(1rem, 1.2vw, 1.5rem);
-    --clamp-2: clamp(1.2rem, 4vw, 2.5rem);
+    --clamp-0: clamp(0.7rem, 1vw, 1.1rem);
+    --clamp-1: clamp(0.8rem, 2vw, 1.5rem);
+    --clamp-2: clamp(1.5rem, 4vw, 3rem);
     --clamp-3: clamp(3rem, 8vw, 6rem);
 }
 
