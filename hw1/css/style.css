@@ -38,7 +38,6 @@ main {
     flex: 1;
     color: var(--text-color);
     font-family: var(--font-body), sans-serif;
-    padding: 0px 100px;
 }
 
 h1 {
