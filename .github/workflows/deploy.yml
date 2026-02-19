@@ -22,5 +22,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: hw1
-          command: pages deploy ./ --project-name=hw1
+          command: pages deploy ./hw1 --branch=hw1 --commit-dirty=true
