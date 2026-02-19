@@ -9,8 +9,8 @@ on:
       - master
 
 jobs:
-  setup-node:
-    name: Set up Node.js
+  deploy-hw1:
+    name: Deploy hw1
     runs-on: ubuntu-latest
 
     steps:
@@ -19,12 +19,6 @@ jobs:
         with:
           node-version: '20.x'
 
-  deploy-hw1:
-    name: Deploy hw1
-    runs-on: ubuntu-latest
-    needs: setup-node
-
-    steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
