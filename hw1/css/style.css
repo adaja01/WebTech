@@ -38,6 +38,7 @@ main {
     flex: 1;
     color: var(--text-color);
     font-family: var(--font-body), sans-serif;
+    padding: 0px 100px;
 }
 
 h1 {
@@ -150,6 +151,28 @@ footer {
     border-radius: 10px;
     flex-shrink: 0;
 }
+.member__image {
+    width: 16rem;
+    height: auto;
+    flex-shrink: 0;
+}
+.middle__of__screen{
+    text-align: center;
+}
+
+.member__table {
+    border-collapse: collapse;
+}
+
+.member__table th{
+    border: 2px solid red;
+    padding: 0px 10px;
+}
+
+.member__table td{
+    border: 1px solid rgba(255,0,0,0.5);
+    padding: 0px 10px;
+}
 
 /* adjust layout for wider screens */
 @media (min-width: 1000px) {
@@ -158,6 +181,7 @@ footer {
         text-align: right;
         gap: 3rem;
     }
+
 
     .body__index {
         background:
