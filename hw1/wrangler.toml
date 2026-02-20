@@ -1,7 +1,0 @@
-﻿name = "web-uu"
-
-[[headers]]
-pattern = "/*"
-
-[headers.values]
-Cache-Control = "no-store"
