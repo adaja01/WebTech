@@ -15,6 +15,7 @@ Website for the first assignment of INFOB2WT, showcasing information about the F
 ### Team
 - [FaZe Clan Official Website](https://fazeclan.com/)
 - [FaZe Clan Wikipedia](https://en.wikipedia.org/wiki/FaZe_Clan)
+- [FaZe Clan Archive](https://faze4ever.com/)
 ### Assets
 - [FaZe Clan Logos](https://logos-world.net/faze-logo)
 - [Fonts](https://fonts.google.com/share?selection.family=Climate+Crisis:YEAR@1979|Cormorant+Garamond:ital,wght@1,300..700|Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000)
