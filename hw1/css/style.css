@@ -234,10 +234,7 @@ footer {
     width: clamp(5rem, 10vw, 9rem);
     height: auto;
     border-radius: var(--border-radius-sm);
-    object-fit: contain;
-    flex-shrink: 0;
     align-self: center;
-    opacity: 0.9;
 }
 
 .member-table {
