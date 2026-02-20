@@ -165,11 +165,13 @@ footer {
     max-width: 100%;
 }
 
+/* members */
 .member__image {
     width: 16rem;
     height: auto;
     flex-shrink: 0;
 }
+
 .middle__of__screen{
     text-align: center;
 }
