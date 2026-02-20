@@ -15,16 +15,16 @@
     --font-body: 'Nunito Sans';
 
     /* font sizes */
-    --font-size-xs: clamp(0.7rem, 1vw, 1.1rem);
-    --font-size-sm: clamp(0.8rem, 2vw, 1.5rem);
-    --font-size-md: clamp(1.5rem, 4vw, 3rem);
-    --font-size-lg: clamp(3rem, 8vw, 6rem);
+    --font-size-xs: clamp(0.5rem, 1.2vw, 1.1rem);
+    --font-size-sm: clamp(0.7rem, 2.5vw, 1.5rem);
+    --font-size-md: clamp(1rem, 4vw, 3rem);
+    --font-size-lg: clamp(1.5rem, 8vw, 6rem);
 
     /* spacing */
-    --space-xs: clamp(0.5rem, 1vw, 1rem);
-    --space-sm: clamp(1rem, 3vw, 2rem);
-    --space-md: clamp(1rem, 5vw, 3rem);
-    --space-lg: clamp(2rem, 5vw, 4rem);
+    --space-xs: clamp(0.3rem, 1vw, 1rem);
+    --space-sm: clamp(0.7rem, 3vw, 2rem);
+    --space-md: clamp(0.9rem, 5vw, 3rem);
+    --space-lg: clamp(1.5rem, 5vw, 4rem);
 
     /* layout */
     --border-radius-sm: 6px;
@@ -241,12 +241,13 @@ footer {
 .member-table {
     width: 100%;
     border-collapse: collapse;
+    overflow-x: auto;
     font-size: var(--font-size-xs);
 }
 
 .member-table__header {
     text-align: left;
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--space-xs);
     font-weight: 700;
     text-transform: uppercase;
     color: var(--primary-color);
@@ -262,7 +263,7 @@ footer {
 }
 
 .member-table__cell {
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--space-xs);
     border-bottom: 1px solid var(--border-subtle);
     color: var(--text-color);
 }
