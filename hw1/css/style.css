@@ -1,5 +1,4 @@
-﻿/* vars */
-:root {
+﻿:root {
     /* colors */
     --primary-color: #ff0000;
     --muted-primary-color: #cc0000;
@@ -98,6 +97,7 @@ header {
 
 main {
     flex: 1;
+    padding: 0 var(--space-md);
 }
 
 .page-header {
@@ -185,24 +185,33 @@ footer {
     max-width: 100%;
 }
 
-/* members */
-.members-group {
+.members-group,
+.achievements-group {
     max-width: var(--max-width);
-    margin: 0 auto;
-    padding: var(--space-lg) var(--space-md);
+    margin: 0 auto var(--space-sm);
+    padding: var(--space-sm);
+    background-color: var(--surface-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-md);
 }
 
-.members-group__title {
+.members-group__title,
+.achievements-group__title {
     font-family: var(--font-secondary), serif;
-    font-size: var(--font-size-md);
-    color: var(--primary-color);
+    font-size: var(--font-size-sm);
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     margin: 0 0 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: var(--border-width) solid var(--primary-color);
 }
 
-.members-group__description {
+.members-group__description,
+.achievements-group__description {
     font-size: var(--font-size-sm);
     color: var(--muted-text-color);
-    margin: 0 0 2rem;
+    margin: 0 0 1.5rem;
 }
 
 .team-section {
@@ -271,16 +280,22 @@ footer {
 /* contact */
 .contact-group {
     max-width: var(--max-width);
-    margin: 0 auto;
-    padding: var(--space-sm) var(--space-md);
+    margin: 0 auto var(--space-sm);
+    padding: var(--space-sm);
+    background-color: var(--surface-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-md);
 }
 
 .contact-group__title {
     font-family: var(--font-secondary), serif;
-    font-size: var(--font-size-md);
-    color: var(--primary-color);
-    margin: 0 0 var(--space-xs);
+    font-size: var(--font-size-sm);
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem;
     padding-bottom: 0.5rem;
+    border-bottom: var(--border-width) solid var(--primary-color);
 }
 
 .contact-list {
@@ -356,8 +371,11 @@ footer {
 
 .history-article {
     max-width: var(--max-width);
-    margin: 0 auto;
-    padding: var(--space-lg) var(--space-md) 0;
+    margin: 0 auto var(--space-sm);
+    padding: var(--space-sm);
+    background-color: var(--surface-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-md);
 }
 
 .history-article__header {
@@ -381,8 +399,10 @@ footer {
 
 .history-article__title {
     font-family: var(--font-secondary), serif;
-    font-size: var(--font-size-md);
-    color: var(--primary-color);
+    font-size: var(--font-size-sm);
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     margin: 0;
 }
 
