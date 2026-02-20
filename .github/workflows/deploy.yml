@@ -17,6 +17,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Create _headers file
+        run: |
+          echo "/*" > ./hw1/_headers
+          echo "  Cache-Control: no-store, no-cache, must-revalidate" >> ./hw1/_headers
+          echo "  Pragma: no-cache" >> ./hw1/_headers
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:

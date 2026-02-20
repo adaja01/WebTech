@@ -23,3 +23,8 @@ Website for the first assignment of INFOB2WT, showcasing information about the F
 - [HTML](https://www.w3schools.com/html/)
 - [CSS](https://www.w3schools.com/css/)
 - And the lectures of course!
+
+## Running
+- Open `index.html` in a web browser to view the website
+- Or visit `hw1.web-uu.pages.dev` to see the deployed version on Cloudflare Pages 
+  - Note that this site is blocked behind Cloudflare Access and thus only available for team members
