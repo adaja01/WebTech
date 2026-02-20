@@ -44,12 +44,13 @@ html {
     scrollbar-color: var(--primary-color) var(--background-color);
     scrollbar-width: thin;
     overflow-x: hidden;
+    background-color: var(--secondary-color);
 }
 
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100dvh;
     margin: 0;
     font-family: var(--font-body), sans-serif;
     color: var(--text-color);
