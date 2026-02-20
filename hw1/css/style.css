@@ -375,6 +375,10 @@ footer {
     flex-shrink: 0;
 }
 
+.history-article__logo--invert {
+    filter: invert(1);
+}
+
 .history-article__title {
     font-family: var(--font-secondary), serif;
     font-size: var(--font-size-md);
