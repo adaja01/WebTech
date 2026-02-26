@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        assignment: [ hw1 ]
+        assignment: [ hw1, hw2 ]
     steps:
       - uses: actions/checkout@v4
 

@@ -29,3 +29,24 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ./hw1 --project-name=web-uu --branch=hw1 --commit-dirty=true
+
+  deploy-hw2:
+    name: Deploy hw2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create _headers file
+        run: |
+          echo "/*" > ./hw2/_headers
+          echo "  Cache-Control: no-store, no-cache, must-revalidate" >> ./hw2/_headers
+          echo "  Pragma: no-cache" >> ./hw2/_headers
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./hw2 --project-name=web-uu --branch=hw2 --commit-dirty=true
