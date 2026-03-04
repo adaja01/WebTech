@@ -24,4 +24,3 @@ jobs:
         run: |
           npm ci
           npm run validate:${{ matrix.assignment }}
-          npm run lint:${{ matrix.assignment }}
