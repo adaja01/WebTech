@@ -8,7 +8,7 @@
     "validate:hw1": "tsx scripts/validate.ts hw1",
     "validate:hw1:html": "tsx scripts/validate.ts hw1 --html-only",
     "validate:hw1:css": "tsx scripts/validate.ts hw1 --css-only",
-    "validate:hw2": "tsx scripts/validate.ts hw2 && validate:hw2:lint",
+    "validate:hw2": "tsx scripts/validate.ts hw2 && npm run validate:hw2:lint",
     "validate:hw2:html": "tsx scripts/validate.ts hw2 --html-only",
     "validate:hw2:css": "tsx scripts/validate.ts hw2 --css-only",
     "validate:hw2:lint": "eslint hw2"
