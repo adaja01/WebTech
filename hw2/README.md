@@ -6,6 +6,8 @@ Continuation on assignment 1 with JavaScript.
 ## Structure
 - `assets/` - directory for images and other media assets
 - `css/` - directory for CSS files
+- `data/` - directory for JSON data
+- `js/` - directory for JavaScript files
 - `index.html` - main page for the website
 - `history.html` - page detailing the history
 - `members.html` - page listing the members and teams

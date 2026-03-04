@@ -7,7 +7,7 @@ This monorepo contains all the assignments for INFOB2WT
 - `.github/workflows/validate.yml` - GitHub Actions workflow for validating HTML/CSS
 - `.github/workflows/deploy.yml` - Github Actions workflow for deploying to Cloudflare Pages
 - `hw1/` - First assignment, static website in plain HTML/CSS with info on FaZe clan
-  - Further assignments will be added as different subdirectories (e.g. `hw2/`)
+- `hw2/` - Second assignment, dynamic version of the first assignment using JavaScript
 - `scripts/` - Contains validation logic for HTML/CSS using W3C Validator
 - `package.json` - Contains dev dependencies and scripts for validation
 
