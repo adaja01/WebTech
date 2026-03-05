@@ -1,8 +1,9 @@
 ﻿document.addEventListener("DOMContentLoaded", () => {
+    // retrieve menu elements
     const elementSelect = document.getElementById("element-select");
     const appearanceSelect = document.getElementById("appearance-select");
 
-    // Populate the element select menu dynamically
+    // populate element select menu
     const elements = document.querySelectorAll("body, article, section");
     elements.forEach((el, index) => {
         const option = document.createElement("option");
