@@ -1,0 +1,45 @@
+﻿document.addEventListener("DOMContentLoaded", () => {
+    const elementSelect = document.getElementById("element-select");
+    const appearanceSelect = document.getElementById("appearance-select");
+
+    // Populate the element select menu dynamically
+    const elements = document.querySelectorAll("body, article, section");
+    elements.forEach((el, index) => {
+        const option = document.createElement("option");
+        option.value = index;
+        option.textContent = el.tagName.toLowerCase();
+        elementSelect.appendChild(option);
+    });
+
+    let selectedElement = null;
+
+    // Handle element selection
+    elementSelect.addEventListener("change", (event) => {
+        const index = event.target.value;
+        selectedElement = elements[index];
+    });
+
+    // Handle appearance modification
+    appearanceSelect.addEventListener("change", (event) => {
+        if (!selectedElement) {
+            alert("Please select an element first.");
+            return;
+        }
+
+        const value = event.target.value;
+        if (value === "font-size") {
+            const newSize = prompt("Enter font size (e.g., 16px):");
+            if (newSize) {
+                selectedElement.style.fontSize = newSize;
+            }
+        } else if (value === "font-color") {
+            const newColor = prompt("Enter font color (e.g., red or #ff0000):");
+            if (newColor) {
+                selectedElement.style.color = newColor;
+            }
+        }
+
+        // Reset the appearance select menu
+        appearanceSelect.value = "";
+    });
+});
