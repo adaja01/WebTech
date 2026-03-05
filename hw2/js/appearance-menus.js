@@ -32,11 +32,17 @@
             const newSize = prompt("Enter font size (e.g., 16px):");
             if (newSize) {
                 selectedElement.style.fontSize = newSize;
+                selectedElement.querySelectorAll("*").forEach((child) => {
+                    child.style.fontSize = newSize;
+                });
             }
         } else if (value === "font-color") {
             const newColor = prompt("Enter font color (e.g., red or #ff0000):");
             if (newColor) {
                 selectedElement.style.color = newColor;
+                selectedElement.querySelectorAll("*").forEach((child) => {
+                    child.style.color = newColor;
+                });
             }
         }
 
