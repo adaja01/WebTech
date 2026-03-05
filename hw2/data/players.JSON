@@ -1,0 +1,488 @@
+{
+  "players": [
+    {
+      "firstName": "Finn",
+      "lastName": "Andersen",
+      "born": null,
+      "nationality": "Denmark",
+      "role": "CS2",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe CS2", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "David",
+      "lastName": "Čerňanský",
+      "born": null,
+      "nationality": "Slovakia",
+      "role": "CS2",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe CS2", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Helvijs",
+      "lastName": "Saukants",
+      "born": null,
+      "nationality": "Latvia",
+      "role": "CS2",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe CS2", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Jakub",
+      "lastName": "Pietruszewski",
+      "born": null,
+      "nationality": "Poland",
+      "role": "CS2",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe CS2", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Russel",
+      "lastName": "Van Dulken",
+      "born": null,
+      "nationality": "Canada",
+      "role": "CS2",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe CS2", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Olof",
+      "lastName": "Gustafsson",
+      "born": null,
+      "nationality": "Sweden",
+      "role": "CS2",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe CS2", "country": "International", "city": null }
+      ]
+    },
+
+    {
+      "firstName": "Teedech",
+      "lastName": "Songsaisakul",
+      "born": null,
+      "nationality": "Thailand",
+      "role": "EA Sports FC",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe EA Sports FC",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Sorawit",
+      "lastName": "Rojjanasinlapin",
+      "born": null,
+      "nationality": "Thailand",
+      "role": "EA Sports FC",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe EA Sports FC",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Phatanasak",
+      "lastName": "Varanan",
+      "born": null,
+      "nationality": "Thailand",
+      "role": "EA Sports FC",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe EA Sports FC",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+
+    {
+      "firstName": "Shane",
+      "lastName": "Cotton",
+      "born": null,
+      "nationality": "United States",
+      "role": "Fortnite",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe Fortnite", "country": "International", "city": null }
+      ]
+    },
+
+    {
+      "firstName": "Zane",
+      "lastName": "Hearon",
+      "born": null,
+      "nationality": "United States",
+      "role": "Halo",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe Halo", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Garcia",
+      "born": null,
+      "nationality": "United States",
+      "role": "Halo",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe Halo", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Donnie",
+      "lastName": "Lopez",
+      "born": null,
+      "nationality": "United States",
+      "role": "Halo",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe Halo", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Joey",
+      "lastName": "Taylor",
+      "born": null,
+      "nationality": "United States",
+      "role": "Halo",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe Halo", "country": "International", "city": null }
+      ]
+    },
+
+    {
+      "firstName": "David",
+      "lastName": "Tillberg-Persson",
+      "born": null,
+      "nationality": "Sweden",
+      "role": "PUBG",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe PUBG", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Ivan",
+      "lastName": "Kapustin",
+      "born": null,
+      "nationality": "Russia",
+      "role": "PUBG",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe PUBG", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Ludvik",
+      "lastName": "Jahnsen",
+      "born": null,
+      "nationality": "Norway",
+      "role": "PUBG",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe PUBG", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Gustav",
+      "lastName": "Blønd",
+      "born": null,
+      "nationality": "Denmark",
+      "role": "PUBG",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe PUBG", "country": "International", "city": null }
+      ]
+    },
+    {
+      "firstName": "Rory",
+      "lastName": "Logue",
+      "born": null,
+      "nationality": "United Kingdom",
+      "role": "PUBG",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe PUBG", "country": "International", "city": null }
+      ]
+    },
+
+    {
+      "firstName": "Peerapol",
+      "lastName": "Phomrat",
+      "born": null,
+      "nationality": "Thailand",
+      "role": "PUBG Mobile",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe PUBG Mobile",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Apiwat",
+      "lastName": "Boonrat",
+      "born": null,
+      "nationality": "Thailand",
+      "role": "PUBG Mobile",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe PUBG Mobile",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Ratchapol",
+      "lastName": "Maneerat",
+      "born": null,
+      "nationality": "Thailand",
+      "role": "PUBG Mobile",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe PUBG Mobile",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Tharit",
+      "lastName": "Pluksang",
+      "born": null,
+      "nationality": "Thailand",
+      "role": "PUBG Mobile",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe PUBG Mobile",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Thiraphong",
+      "lastName": "Murasri",
+      "born": null,
+      "nationality": "Thailand",
+      "role": "PUBG Mobile",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe PUBG Mobile",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Nattawut",
+      "lastName": "Muensa",
+      "born": null,
+      "nationality": "Thailand",
+      "role": "PUBG Mobile",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe PUBG Mobile",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+
+    {
+      "firstName": "Victor",
+      "lastName": "dos Santos",
+      "born": null,
+      "nationality": "Brazil",
+      "role": "Rainbow Six Siege",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe Rainbow Six Siege",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Thiago",
+      "lastName": "Ferreira",
+      "born": null,
+      "nationality": "Brazil",
+      "role": "Rainbow Six Siege",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe Rainbow Six Siege",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Eduardo",
+      "lastName": "Santos",
+      "born": null,
+      "nationality": "Brazil",
+      "role": "Rainbow Six Siege",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe Rainbow Six Siege",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Jaime",
+      "lastName": "Ramos",
+      "born": null,
+      "nationality": "Brazil",
+      "role": "Rainbow Six Siege",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe Rainbow Six Siege",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Lucas",
+      "lastName": "Schinke",
+      "born": null,
+      "nationality": "Brazil",
+      "role": "Rainbow Six Siege",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe Rainbow Six Siege",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+
+    {
+      "firstName": "Otso",
+      "lastName": "Himanen",
+      "born": null,
+      "nationality": "Finland",
+      "role": "Apex Legends",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe Apex Legends",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Zaine",
+      "lastName": "Kazi",
+      "born": null,
+      "nationality": "United Kingdom",
+      "role": "Apex Legends",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe Apex Legends",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+    {
+      "firstName": "Ali",
+      "lastName": "Naghawi",
+      "born": null,
+      "nationality": "United Kingdom",
+      "role": "Apex Legends",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        {
+          "title": "FaZe Apex Legends",
+          "country": "International",
+          "city": null
+        }
+      ]
+    },
+
+    {
+      "firstName": "Edgar",
+      "lastName": "Valdez",
+      "born": null,
+      "nationality": "Mexico",
+      "role": "Super Smash Bros Ultimate",
+      "number": null,
+      "photo": null,
+      "formerTeams": [
+        { "title": "FaZe Smash Bros", "country": "International", "city": null }
+      ]
+    }
+  ]
+}
