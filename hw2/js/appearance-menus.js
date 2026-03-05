@@ -7,20 +7,20 @@
     const elements = document.querySelectorAll("body, article, section");
     elements.forEach((el, index) => {
         const option = document.createElement("option");
-        option.value = index;
-        option.textContent = el.tagName.toLowerCase();
+        option.value = index.toString();
+        option.textContent = el.tagName;
         elementSelect.appendChild(option);
     });
 
     let selectedElement = null;
 
-    // Handle element selection
+    // element selection
     elementSelect.addEventListener("change", (event) => {
-        const index = event.target.value;
+        const index = parseInt(event.target.value);
         selectedElement = elements[index];
     });
 
-    // Handle appearance modification
+    // appearance modification
     appearanceSelect.addEventListener("change", (event) => {
         if (!selectedElement) {
             alert("Please select an element first.");
@@ -40,7 +40,8 @@
             }
         }
 
-        // Reset the appearance select menu
+        // reset menu
+        elementSelect.value = "";
         appearanceSelect.value = "";
     });
 });
