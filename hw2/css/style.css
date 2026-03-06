@@ -239,7 +239,7 @@ footer {
 .history-article__title,
 .team-section__title {
   font-family: var(--font-secondary), serif;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-md);
   color: var(--text-color);
   text-transform: uppercase;
   margin: 0 0 var(--space-xs);
@@ -428,6 +428,76 @@ footer {
   position: absolute;
   font-size: var(--font-size-xs);
   text-transform: none;
+}
+
+.team-roster {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-sm); 
+}
+
+.player-card {
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-card__top {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.player-card__photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-bottom: var(--border-width) solid var(--primary-color);
+}
+
+.player-card__number {
+  position: absolute;
+  bottom: var(--space-sm);
+  left: 50%;
+  transform: translateX(-50%);
+
+  color: var(--primary-color);
+  font-family: var(--font-primary), sans-serif;
+  font-size: var(--font-size-sm);
+  font-weight: 900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Makes it readable against the photo */
+  z-index: 10;
+}
+
+.player-card__body {
+  padding: var(--space-xs);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-card__name {
+  font-family: var(--primary-color);
+  color: var(--primary-color);
+  font-size: var(--font-size-sm);
+  margin: 0 0 var(--space-xs)
+}
+
+.player-card__teams {
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--font-size-xs);
+}
+
+.player-card__team {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xs);
+  background-color: var(--surface-subtle);
 }
 
 @media (min-width: 1000px) {
