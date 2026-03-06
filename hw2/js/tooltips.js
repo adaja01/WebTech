@@ -1,33 +1,21 @@
-// function showTooltip(id) {
-//   var tooltip = document.getElementById(id).querySelector(".tooltiptext");
-//   tooltip.style.visibility = "visible";
-// }
+export function initToolTips(){
+  const display = document.getElementById('members-display');
 
-// function hideTooltip(id) {
-//   var tooltip = document.getElementById(id).querySelector(".tooltiptext");
-//   tooltip.style.visibility = "hidden";
-// }
-
-// function registerEvents() {
-//   [
-//     "cs2",
-//     "ea",
-//     "fn",
-//     "halo",
-//     "pubg",
-//     "pubg__mobile",
-//     "r6s",
-//     "apex",
-//     "smash__bros",
-//   ].forEach((id) => {
-//     const game = document.getElementById(id);
-//     game.addEventListener("mouseover", function () {
-//       showTooltip(id);
-//     });
-//     game.addEventListener("mouseout", function () {
-//       hideTooltip(id);
-//     });
-//   });
-// }
-
-// window.addEventListener("load", registerEvents);
+  display.addEventListener("mouseover", function (e){
+    const target = e.target.closest(".tooltip");
+    if (target) {
+      const tooltipText = target.querySelector(".tooltiptext");
+      if(tooltipText)
+        tooltipText.style.visibility = "visible";
+    }
+  });
+  
+  display.addEventListener("mouseout", function () {
+    const target = e.target.closest(".tooltip");
+    if(target){
+      const tooltipText = target.querySelector(".tooltiptext");
+      if(tooltipText)
+        tooltipText.style.visibility = "hidden";
+    }
+  });
+}
