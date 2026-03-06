@@ -20,27 +20,27 @@ export class Team {
     }
 
     set title(value){
-        if(typeof value !== 'string' || value.trim() === "")
-            throw new Error("Invalid title, must be a non empty string.");
+        if(typeof value !== "string" || value.trim() === "")
+            {throw new Error("Invalid title, must be a non empty string.");}
         this.#title = value;
     }
     set country(value){
-        if(typeof value !== 'string')
-            throw new Error("Invalid country, must be a string");
+        if(typeof value !== "string")
+            {throw new Error("Invalid country, must be a string");}
         else if (value.trim() === "")
-            this.#country = "International";
+            {this.#country = "International";}
         else
-            this.#country = value;
+            {this.#country = value;}
     }
 
     set city(value){
-        if(value && typeof value !== 'string')
-            throw new Error("Invalid city, must be a string.");
+        if(value && typeof value !== "string")
+            {throw new Error("Invalid city, must be a string.");}
         else if (value && value.trim() === "")
-            this.#city = "N/A";
+            {this.#city = "N/A";}
         else if (value)
-            this.#city = value;
+            {this.#city = value;}
         else
-            this.#city = "N/A";
+            {this.#city = "N/A";}
     }
 }

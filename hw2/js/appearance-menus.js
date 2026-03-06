@@ -10,7 +10,7 @@ let selectedElement = null;
  */
 function refreshElementSelect() {
     elementSelect.innerHTML =
-        '<option value="" disabled selected>Choose element</option>';
+        "<option value=\"\" disabled selected>Choose element</option>";
 
     elements = document.querySelectorAll("body, article, section");
     elements.forEach((elem, index) => {

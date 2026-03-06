@@ -1,10 +1,10 @@
-import { Player } from './player.js';
+import { Player } from "./player.js";
 //get current sections
-const fileInput = document.getElementById('members-input');
-const display = document.getElementById('members-display');
+const fileInput = document.getElementById("members-input");
+const display = document.getElementById("members-display");
 
 //add event listener for file input
-fileInput.addEventListener('change', (e) => {
+fileInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
 
     //check for file, then parse the file to members, then sort by role to get the teams and then render them.
@@ -39,10 +39,10 @@ fileInput.addEventListener('change', (e) => {
             renderPlayers(playersSortedOnRole);
 
             window.refreshElementSelect();
-        }
+        };
         fileReader.readAsText(file);
     }
-})
+});
 
 /*
 Render function that renders the players:
@@ -55,16 +55,16 @@ and the section is added to the display.
 function renderPlayers(roles){
     display.innerHTML="";
     for(const role in roles){
-        const section = document.createElement('section');
+        const section = document.createElement("section");
         section.className="team-section";
-        section.innerHTML=`<h2 class="team-section__title">${role}</h2>`
+        section.innerHTML=`<h2 class="team-section__title">${role}</h2>`;
 
-        const roster = document.createElement('div');
-        roster.className="team-roster"
+        const roster = document.createElement("div");
+        roster.className="team-roster";
 
         roles[role].forEach(player =>{
-            const playerCard = document.createElement('article');
-            playerCard.className='player-card';
+            const playerCard = document.createElement("article");
+            playerCard.className="player-card";
 
              const teamHTML = player.formerTeams.map(team => `
                 <div class="player-card__team">
@@ -72,12 +72,12 @@ function renderPlayers(roles){
                     <span class="team__info">Country: ${team.country}</span>
                     <span class="team__info">City: ${team.city}</span>
                 </div>
-            `).join('');
+            `).join("");
 
             playerCard.innerHTML=`
                 <div class = player-card__top>
                     <img src="${player.photo}" alt="image of ${player.firstName} ${player.lastName}." class="player-card__photo">
-                    <span class="player-card__number">#${player.number || '00'}</span>
+                    <span class="player-card__number">#${player.number || "00"}</span>
                 </div>
                 <div class = player-card__body>
                     <h3 class="player-card__name">${player.firstName} ${player.lastName}</h3>
