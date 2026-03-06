@@ -37,6 +37,8 @@ fileInput.addEventListener('change', (e) => {
             const playersSortedOnRole = Object.groupBy(players, (player) => player.role);
 
             renderPlayers(playersSortedOnRole);
+
+            window.refreshElementSelect();
         }
         fileReader.readAsText(file);
     }
