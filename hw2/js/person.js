@@ -25,29 +25,29 @@ export class Person{
     }
 
     set firstName(value){
-        if (typeof value !== 'string' || value.trim() === "")
-            throw new Error("Invalid first name, must be a non empty string.");
+        if (typeof value !== "string" || value.trim() === "")
+            {throw new Error("Invalid first name, must be a non empty string.");}
         this.#firstName = value;
     }
     set lastName(value){
-        if (typeof value !== 'string' || value.trim() === "")
-            throw new Error("Invalid last name must be a non empty string.");
+        if (typeof value !== "string" || value.trim() === "")
+            {throw new Error("Invalid last name must be a non empty string.");}
         this.#lastName = value;
     }
     set born(value){
         if(value === null || value === undefined)
-            this.#born = "unknown";
+            {this.#born = "unknown";}
         else{
             const date = new Date(value);
             if(isNaN(date.getTime()))
-                this.#born = "unknown";
+                {this.#born = "unknown";}
             else 
-                this.#born = date;
+                {this.#born = date;}
         }
     }
     set nationality(value){
-        if(typeof value !== 'string' || value.trim() === "")
-            throw new Error("Invalid nationality, must be a non empty string.");
+        if(typeof value !== "string" || value.trim() === "")
+            {throw new Error("Invalid nationality, must be a non empty string.");}
         this.#nationality = value;
     }
 }

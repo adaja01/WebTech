@@ -1,5 +1,5 @@
-import { Person } from './person.js'
-import { Team } from './team.js'
+import { Person } from "./person.js";
+import { Team } from "./team.js";
 
 export class Player extends Person{
     #role;
@@ -29,35 +29,35 @@ export class Player extends Person{
     }
 
     set role(value){
-        if(typeof value !== 'string' || value.trim() === "")
-            throw new Error("Invalid role, must be a non empty string.");
+        if(typeof value !== "string" || value.trim() === "")
+            {throw new Error("Invalid role, must be a non empty string.");}
         this.#role = value;
     }
     set number(value){
         if(value === null)
-            this.#number = null
-        else if(typeof value !== 'number' || value < 0)
-            throw new Error("Invalid number, must be a number and positive.")
+            {this.#number = null;}
+        else if(typeof value !== "number" || value < 0)
+            {throw new Error("Invalid number, must be a number and positive.");}
         else 
-            this.#number = value
+            {this.#number = value;}
     }
     set photo(value){
         if (value === null)
-            this.#photo = "assets/images/anonymous.png"
-        else if (typeof value !== 'string' || value.trim() === "")
-            throw new Error("Invalid photo, photo must be a file path or url with string type.")
+            {this.#photo = "assets/images/anonymous.png";}
+        else if (typeof value !== "string" || value.trim() === "")
+            {throw new Error("Invalid photo, photo must be a file path or url with string type.");}
         else
-            this.#photo = value;
+            {this.#photo = value;}
     }
     set formerTeams(value){
         if(!Array.isArray(value))
-            this.#formerTeams = [];
+            {this.#formerTeams = [];}
         else{
             this.#formerTeams = value.map(item => {
                 if (item instanceof Team)
-                    return item;
+                    {return item;}
                 return new Team(item.title, item.country, item.city);
-            })
+            });
         }
     }
 }
