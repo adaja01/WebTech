@@ -500,6 +500,54 @@ footer {
   background-color: var(--surface-subtle);
 }
 
+#upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-md);
+  background-color: var(--surface-subtle);
+  border: 2px dashed var(--border-subtle);
+  margin: var(--space-md) auto;
+  max-width: var(--max-width);
+  transition: border-color 0.3s ease;
+}
+
+#upload-section:hover {
+  border-color: var(--primary-color);
+}
+
+#members-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+#upload-section label{
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+}
+
+#upload-section label:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--primary-color);
+}
+
+#upload-section label:active {
+  transform: scale(0.98);
+}
+
 @media (min-width: 1000px) {
   .hero {
     flex-direction: row;
