@@ -1,10 +1,9 @@
 import { Player } from "./player.js";
-import { initToolTips } from "./tooltips.js";
-//get current sections
+// get current sections
 const fileInput = document.getElementById("members-input");
 const display = document.getElementById("members-display");
 
-//add event listener for file input
+// add event listener for file input
 fileInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
 
@@ -49,8 +48,8 @@ fileInput.addEventListener("change", (e) => {
 Render function that renders the players:
 Creates a section per role.
 A div per section for the cards.
-Then a player card per player of course.
-Then the player cards are added to the cardgrid (the div),
+Then a player card per player, of course.
+Then the player cards are added to the card grid (the div),
 and the section is added to the display.
 */
 function renderPlayers(roles){
@@ -59,11 +58,9 @@ function renderPlayers(roles){
         const section = document.createElement("section");
         section.className="team-section";
         section.innerHTML=`
-            <div class="role-header-wrapper tooltip">
-                <h2 class="team-section__title">${role}</h2>
-                <span class="tooltiptext">This is the ${role} roster.</span>
-            </div>
-        `;
+            <div class="role-header-wrapper">
+                <h2 class="team-section__title" title="This is the ${role} roster.">${role}</h2>
+            </div>`;
 
         const roster = document.createElement("div");
         roster.className="team-roster";
@@ -77,8 +74,7 @@ function renderPlayers(roles){
                     <span class=team__title>${team.title}</span>
                     <span class="team__info">Country: ${team.country}</span>
                     <span class="team__info">City: ${team.city}</span>
-                </div>
-            `).join("");
+                </div>`).join("");
 
             playerCard.innerHTML=`
                 <div class = player-card__top>
@@ -95,12 +91,10 @@ function renderPlayers(roles){
                         <h4><strong>Team:</strong></h4>
                         ${teamHTML}
                     </div>
-                </div>
-            `;
+                </div>`;
             roster.appendChild(playerCard);
         });
         section.appendChild(roster);
         display.appendChild(section);
-    };
-    initToolTips();
+    }
 }
