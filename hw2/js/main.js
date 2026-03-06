@@ -1,4 +1,5 @@
 import { Player } from "./player.js";
+import { initToolTips } from "./tooltips.js";
 //get current sections
 const fileInput = document.getElementById("members-input");
 const display = document.getElementById("members-display");
@@ -57,7 +58,12 @@ function renderPlayers(roles){
     for(const role in roles){
         const section = document.createElement("section");
         section.className="team-section";
-        section.innerHTML=`<h2 class="team-section__title">${role}</h2>`;
+        section.innerHTML=`
+            <div class="role-header-wrapper tooltip">
+                <h2 class="team-section__title">${role}</h2>
+                <span class="tooltiptext">This is the ${role} roster.</span>
+            </div>
+        `;
 
         const roster = document.createElement("div");
         roster.className="team-roster";
@@ -96,4 +102,5 @@ function renderPlayers(roles){
         section.appendChild(roster);
         display.appendChild(section);
     };
+    initToolTips();
 }

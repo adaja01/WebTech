@@ -10,7 +10,7 @@ export function initToolTips(){
     }
   });
   
-  display.addEventListener("mouseout", function () {
+  display.addEventListener("mouseout", function (e) {
     const target = e.target.closest(".tooltip");
     if(target){
       const tooltipText = target.querySelector(".tooltiptext");
