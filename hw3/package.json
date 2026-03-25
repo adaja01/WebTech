@@ -1,0 +1,23 @@
+{
+  "name": "hw3",
+  "version": "1.0.0",
+  "description": "Website for the third assignment of INFOB2WT, creating a fullstack web application \r Continuation on assignment 2.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "fs": "^0.0.1-security",
+    "morgan": "^1.10.1",
+    "path": "^0.12.7",
+    "sqlite3": "^6.0.1"
+  }
+}
