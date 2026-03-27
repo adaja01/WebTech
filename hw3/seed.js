@@ -12,7 +12,7 @@ const teams = [
     {name : "MOUZ", logo : "assets/images/teams/MOUZ-logo.png", country : "Germany"},
     {name : "HEROIC", logo : "assets/images/HEROIC-logo.png", country : "Denmark"},
     {name : "Natus Vincere", logo : "assets/images/NV-logo.png", country : "Ukraine"}
-]
+];
 
 const players = [
     {
@@ -524,7 +524,7 @@ const players = [
         photo: null,
         team_id: 10
     }
-]
+];
 
 const users = [
     {
@@ -559,4 +559,55 @@ const users = [
         favorite_team_id: 10,
         is_admin: 1
     }
-]
+];
+
+const games = [
+    // Past games (is_upcoming = 0)
+    { home_team_id: 1, away_team_id: 2, home_score: 2, away_score: 0, date: "2025-01-05", is_upcoming: 0 },
+    { home_team_id: 1, away_team_id: 3, home_score: 2, away_score: 1, date: "2025-01-12", is_upcoming: 0 },
+    { home_team_id: 1, away_team_id: 4, home_score: 0, away_score: 2, date: "2025-01-19", is_upcoming: 0 },
+    { home_team_id: 1, away_team_id: 5, home_score: 2, away_score: 1, date: "2025-01-26", is_upcoming: 0 },
+    { home_team_id: 2, away_team_id: 3, home_score: 1, away_score: 2, date: "2025-02-02", is_upcoming: 0 },
+    { home_team_id: 2, away_team_id: 4, home_score: 2, away_score: 0, date: "2025-02-09", is_upcoming: 0 },
+    { home_team_id: 2, away_team_id: 5, home_score: 0, away_score: 2, date: "2025-02-16", is_upcoming: 0 },
+    { home_team_id: 3, away_team_id: 4, home_score: 2, away_score: 1, date: "2025-02-23", is_upcoming: 0 },
+    { home_team_id: 3, away_team_id: 5, home_score: 1, away_score: 2, date: "2025-03-02", is_upcoming: 0 },
+    { home_team_id: 4, away_team_id: 5, home_score: 2, away_score: 0, date: "2025-03-09", is_upcoming: 0 },
+    { home_team_id: 1, away_team_id: 6, home_score: 2, away_score: 1, date: "2025-03-16", is_upcoming: 0 },
+    { home_team_id: 2, away_team_id: 6, home_score: 0, away_score: 2, date: "2025-03-23", is_upcoming: 0 },
+    { home_team_id: 3, away_team_id: 6, home_score: 2, away_score: 0, date: "2025-03-30", is_upcoming: 0 },
+    { home_team_id: 4, away_team_id: 6, home_score: 1, away_score: 2, date: "2025-04-06", is_upcoming: 0 },
+    { home_team_id: 5, away_team_id: 6, home_score: 2, away_score: 1, date: "2025-04-13", is_upcoming: 0 },
+    { home_team_id: 1, away_team_id: 7, home_score: 0, away_score: 2, date: "2025-04-20", is_upcoming: 0 },
+    { home_team_id: 2, away_team_id: 7, home_score: 2, away_score: 1, date: "2025-04-27", is_upcoming: 0 },
+    { home_team_id: 3, away_team_id: 7, home_score: 2, away_score: 0, date: "2025-05-04", is_upcoming: 0 },
+    { home_team_id: 4, away_team_id: 7, home_score: 1, away_score: 2, date: "2025-05-11", is_upcoming: 0 },
+    { home_team_id: 5, away_team_id: 7, home_score: 2, away_score: 0, date: "2025-05-18", is_upcoming: 0 },
+    { home_team_id: 6, away_team_id: 7, home_score: 0, away_score: 2, date: "2025-05-25", is_upcoming: 0 },
+    { home_team_id: 1, away_team_id: 8, home_score: 2, away_score: 1, date: "2025-06-01", is_upcoming: 0 },
+    { home_team_id: 2, away_team_id: 8, home_score: 1, away_score: 2, date: "2025-06-08", is_upcoming: 0 },
+
+    // Upcoming games (is_upcoming = 1)
+    { home_team_id: 3, away_team_id: 8, home_score: null, away_score: null, date: "2026-04-01", is_upcoming: 1 },
+    { home_team_id: 4, away_team_id: 8, home_score: null, away_score: null, date: "2026-04-03", is_upcoming: 1 },
+    { home_team_id: 5, away_team_id: 8, home_score: null, away_score: null, date: "2026-04-05", is_upcoming: 1 },
+    { home_team_id: 6, away_team_id: 8, home_score: null, away_score: null, date: "2026-04-07", is_upcoming: 1 },
+    { home_team_id: 7, away_team_id: 8, home_score: null, away_score: null, date: "2026-04-09", is_upcoming: 1 },
+    { home_team_id: 1, away_team_id: 9, home_score: null, away_score: null, date: "2026-04-11", is_upcoming: 1 },
+    { home_team_id: 2, away_team_id: 9, home_score: null, away_score: null, date: "2026-04-13", is_upcoming: 1 },
+    { home_team_id: 3, away_team_id: 9, home_score: null, away_score: null, date: "2026-04-15", is_upcoming: 1 },
+    { home_team_id: 4, away_team_id: 9, home_score: null, away_score: null, date: "2026-04-17", is_upcoming: 1 },
+    { home_team_id: 5, away_team_id: 9, home_score: null, away_score: null, date: "2026-04-19", is_upcoming: 1 },
+    { home_team_id: 6, away_team_id: 9, home_score: null, away_score: null, date: "2026-04-21", is_upcoming: 1 },
+    { home_team_id: 7, away_team_id: 9, home_score: null, away_score: null, date: "2026-04-23", is_upcoming: 1 },
+    { home_team_id: 8, away_team_id: 9, home_score: null, away_score: null, date: "2026-04-25", is_upcoming: 1 },
+    { home_team_id: 1, away_team_id: 10, home_score: null, away_score: null, date: "2026-04-27", is_upcoming: 1 },
+    { home_team_id: 2, away_team_id: 10, home_score: null, away_score: null, date: "2026-04-29", is_upcoming: 1 },
+    { home_team_id: 3, away_team_id: 10, home_score: null, away_score: null, date: "2026-05-01", is_upcoming: 1 },
+    { home_team_id: 4, away_team_id: 10, home_score: null, away_score: null, date: "2026-05-03", is_upcoming: 1 },
+    { home_team_id: 5, away_team_id: 10, home_score: null, away_score: null, date: "2026-05-05", is_upcoming: 1 },
+    { home_team_id: 6, away_team_id: 10, home_score: null, away_score: null, date: "2026-05-07", is_upcoming: 1 },
+    { home_team_id: 7, away_team_id: 10, home_score: null, away_score: null, date: "2026-05-09", is_upcoming: 1 },
+    { home_team_id: 8, away_team_id: 10, home_score: null, away_score: null, date: "2026-05-11", is_upcoming: 1 },
+    { home_team_id: 9, away_team_id: 10, home_score: null, away_score: null, date: "2026-05-13", is_upcoming: 1 },
+];
