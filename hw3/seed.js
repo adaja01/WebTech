@@ -22,7 +22,7 @@ const players = [
         born: "1990-04-14",
         role: "Entry",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Finn-Andersen.jpg",
         team_id: 1
     },
     {
@@ -32,7 +32,7 @@ const players = [
         born: "2001-02-14",
         role: "AWPer",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Helvijs-Saukants.jpg",
         team_id: 1
     },
     {
@@ -42,7 +42,7 @@ const players = [
         born: "2002-07-18",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/David-Čerňanský.jpg",
         team_id: 1
     },
     {
@@ -52,7 +52,7 @@ const players = [
         born: "2004-01-27",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Jakub-Pietruszweski.jpg",
         team_id: 1
     },
     {
@@ -62,7 +62,7 @@ const players = [
         born: "1999-11-14",
         role: "Support",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Russel-Van-Dulken.jpg",
         team_id: 1
     },
 
@@ -73,7 +73,7 @@ const players = [
         born: "2004-07-19",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Victor-Staehr.jpg",
         team_id: 2
     },
     {
@@ -83,7 +83,7 @@ const players = [
         born: "2003-07-23",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Jakob-Nygaard.jpg",
         team_id: 2
     },
     {
@@ -93,7 +93,7 @@ const players = [
         born: "1995-05-21",
         role: "Entry",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Rasmus-Nielsen.jpg",
         team_id: 2
     },
     {
@@ -103,7 +103,7 @@ const players = [
         born: "2002-09-24",
         role: "AWPer",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Nils-Smidebrant.jpg",
         team_id: 2
     },
     {
@@ -113,7 +113,7 @@ const players = [
         born: "2004-07-25",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Gytis-Glušauskas.jpg",
         team_id: 2
     },
 
@@ -124,7 +124,7 @@ const players = [
         born: "1995-04-05",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Johannes-Wodarz.jpg",
         team_id: 3
     },
     {
@@ -134,7 +134,7 @@ const players = [
         born: "2000-04-07",
         role: "Support",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Jon-de-Castro.jpg",
         team_id: 3
     },
     {
@@ -144,7 +144,7 @@ const players = [
         born: "2005-10-24",
         role: "AWPer",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Gleb-Gazin.jpg",
         team_id: 3
     },
     {
@@ -154,7 +154,7 @@ const players = [
         born: "1997-06-10",
         role: "Lurker",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Benjamin-Bremer.jpg",
         team_id: 3
     },
     {
@@ -164,7 +164,7 @@ const players = [
         born: "2000-02-08",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Josef-Baumann.jpg",
         team_id: 3
     },
 
@@ -175,7 +175,7 @@ const players = [
         born: "1996-01-03",
         role: "Lurker",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Nemanja-Kovač.jpg",
         team_id: 4
     },
     {
@@ -185,17 +185,17 @@ const players = [
         born: "2002-07-24",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Nikita-Martynenko.jpg",
         team_id: 4
     },
     {
         first_name: "Álvaro",
-        last_name: "Garcia",
+        last_name: "García",
         nationality: "Spain",
         born: "1998-11-19",
         role: "AWPer",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Álvaro-García.jpg",
         team_id: 4
     },
     {
@@ -205,7 +205,7 @@ const players = [
         born: "2002-04-21",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Matúš-Šimko.jpg",
         team_id: 4
     },
     {
@@ -215,7 +215,7 @@ const players = [
         born: "1999-07-12",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Guy-Iluz.jpg",
         team_id: 4
     },
 
@@ -226,7 +226,7 @@ const players = [
         born: "1997-11-24",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Keith-Markovic.jpg",
         team_id: 5
     },
     {
@@ -236,7 +236,7 @@ const players = [
         born: "2003-11-29",
         role: "AWPer",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Roland-Tomkowiak.jpg",
         team_id: 5
     },
     {
@@ -246,7 +246,7 @@ const players = [
         born: "2002-08-26",
         role: "Entry",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Kamil-Szkaradek.jpg",
         team_id: 5
     },
     {
@@ -256,7 +256,7 @@ const players = [
         born: "1997-07-16",
         role: "Entry",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Jonathan-Jablonowski.jpg",
         team_id: 5
     },
     {
@@ -266,7 +266,7 @@ const players = [
         born: "2002-10-17",
         role: "Entry",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Mario-Diaz.jpg",
         team_id: 5
     },
 
@@ -277,7 +277,7 @@ const players = [
         born: "1994-04-25",
         role: "Support",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Freddy-Johansson.jpg",
         team_id: 6
     },
     {
@@ -287,7 +287,7 @@ const players = [
         born: "2000-11-20",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Rodion-Smyk.jpg",
         team_id: 6
     },
     {
@@ -297,7 +297,7 @@ const players = [
         born: "2004-10-14",
         role: "AWPer",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Dmytro-Semera.jpg",
         team_id: 6
     },
     {
@@ -307,7 +307,7 @@ const players = [
         born: "2007-05-28",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Mykyta-Skyba.jpg",
         team_id: 6
     },
     {
@@ -317,7 +317,7 @@ const players = [
         born: "2006-02-21",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Viktor-Kondratets.jpg",
         team_id: 6
     },
 
@@ -328,7 +328,7 @@ const players = [
         born: "2004-10-27",
         role: "AWPer",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Artem-Moroz.jpg",
         team_id: 7
     },
     {
@@ -338,7 +338,7 @@ const players = [
         born: "1999-01-03",
         role: "Support",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Rasmus-Beck.jpg",
         team_id: 7
     },
     {
@@ -348,7 +348,7 @@ const players = [
         born: "1990-06-09",
         role: "Entry",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Marco-Pfeiffer.jpg",
         team_id: 7
     },
     {
@@ -358,7 +358,7 @@ const players = [
         born: "2006-10-22",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Kacper-Gabara.jpg",
         team_id: 7
     },
     {
@@ -368,7 +368,7 @@ const players = [
         born: "2002-10-25",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Artem-Mushynskyi.jpg",
         team_id: 7
     },
 
@@ -379,7 +379,7 @@ const players = [
         born: "2002-05-17",
         role: "AWPer",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Ádám-Torzsás.jpg",
         team_id: 8
     },
     {
@@ -389,7 +389,7 @@ const players = [
         born: "2004-07-22",
         role: "Entry",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Dorian-Berman.jpg",
         team_id: 8
     },
     {
@@ -399,7 +399,7 @@ const players = [
         born: "2006-09-09",
         role: "Support",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Jimi-Salo.jpg",
         team_id: 8
     },
     {
@@ -409,7 +409,7 @@ const players = [
         born: "2002-06-17",
         role: "Entry",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Ludvig-Brolin.jpg",
         team_id: 8
     },
     {
@@ -419,7 +419,7 @@ const players = [
         born: "2000-09-13",
         role: "Lurker",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Lotan-Giladi.jpg",
         team_id: 8
     },
 
@@ -430,7 +430,7 @@ const players = [
         born: "2002-12-23",
         role: "Support",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Yasin-Koç.jpg",
         team_id: 9
     },
     {
@@ -440,7 +440,7 @@ const players = [
         born: "2005-01-04",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Linus-Bergman.jpg",
         team_id: 9
     },
     {
@@ -450,7 +450,7 @@ const players = [
         born: "2007-06-26",
         role: "AWPer",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Älımjan-Bıtımbai.jpg",
         team_id: 9
     },
     {
@@ -460,7 +460,7 @@ const players = [
         born: "2006-08-21",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Christoffer-Storgaard.jpg",
         team_id: 9
     },
     {
@@ -470,7 +470,7 @@ const players = [
         born: "2005-01-07",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Tim-Ångström.jpg",
         team_id: 9
     },
 
@@ -481,7 +481,7 @@ const players = [
         born: "2003-01-05",
         role: "Support",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Valerii-Vakhovskyi.jpg",
         team_id: 10
     },
     {
@@ -491,7 +491,7 @@ const players = [
         born: "1997-03-30",
         role: "Leader",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Aleksi-Virolainen.jpg",
         team_id: 10
     },
     {
@@ -501,7 +501,7 @@ const players = [
         born: "1999-07-29",
         role: "Entry",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Mihai-Ivan.jpg",
         team_id: 10
     },
     {
@@ -511,7 +511,7 @@ const players = [
         born: "2004-12-14",
         role: "AWPer",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Ihor-Zhdanov.jpg",
         team_id: 10
     },
     {
@@ -521,7 +521,7 @@ const players = [
         born: "2006-12-21",
         role: "Rifler",
         number: null,
-        photo: null,
+        photo: "assets/images/players/Drin-Shaqiri.jpg",
         team_id: 10
     }
 ];
@@ -611,3 +611,35 @@ const games = [
     { home_team_id: 8, away_team_id: 10, home_score: null, away_score: null, date: "2026-05-11", is_upcoming: 1 },
     { home_team_id: 9, away_team_id: 10, home_score: null, away_score: null, date: "2026-05-13", is_upcoming: 1 },
 ];
+
+
+
+db.serialize(()=> {
+    teams.forEach(team =>{
+        db.run(
+            "INSERT INTO teams (name, logo, country) VALUES (?, ?, ?)",
+            [team.name, team.logo, team.country]
+        );
+    });
+    players.forEach(player => {
+        db.run(
+            "INSERT INTO players (first_name, last_name, nationality, date_of_birth, role, number, photo, team_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            [player.first_name, player.last_name, player.nationality, player.born, player.role, player.number, player.photo, player.team_id]
+        );
+    });
+    games.forEach(game => {
+        db.run(
+            "INSERT INTO games (home_team_id, away_team_id, home_score, away_score, date, is_upcoming) VALUES (?, ?, ?, ?, ?, ?)",
+            [game.home_team_id, game.away_team_id, game.home_score, game.away_score, game.date, game.is_upcoming]
+        );
+    });
+    users.forEach(async user => {
+        const hashedpw = await bcrypt.hash(user.password, 10);
+        db.run(
+            "INSERT INTO users (first_name, last_name, email, password, favorite_team_id, is_admin) VALUES (?, ?, ?, ?, ?, ?)",
+            [user.first_name, user.last_name, user.email, hashedpw, user.favorite_team_id, user.is_admin]
+        );
+    });
+
+    console.log("Database seeding succesfull!");
+});
