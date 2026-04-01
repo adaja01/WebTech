@@ -81,6 +81,7 @@ app.get("/api/players/:id", (req, res) => {
     });
 });
 
+//last 10 scores sorted on how recent they were.
 app.get("/api/games/scores", (req, res) => {
     db.all(
         `SELECT games.*,
@@ -102,6 +103,7 @@ app.get("/api/games/scores", (req, res) => {
     );
 });
 
+//upcoming 10 games sorted in ascending order.
 app.get("/api/games/upcoming", (req, res) => {
     db.all(
         `SELECT games.*,
@@ -123,6 +125,7 @@ app.get("/api/games/upcoming", (req, res) => {
     );
 });
 
+//leaderboard api call sorted on points with map diff as tie breaker in case of same amount of points.
 app.get("/api/leaderboard", (req, res) => {
     db.all("SELECT * FROM teams", [], (err, teams) => {
         if (err) {
@@ -162,6 +165,26 @@ app.get("/api/leaderboard", (req, res) => {
             leaderboard.sort((a, b) => b.points - a.points || b.map_diff - a.map_diff);
             res.json(leaderboard);
         });
+    });
+});
+
+//players from a specific team
+app.get("/api/teams/:id/players", (req, res) => {
+    db.all("SELECT * FROM players WHERE team_id = ?", [req.params.id], (err, rows) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(rows);
+    });
+});
+
+//games from a specific team
+app.get("/api/teams/:id/games", (req, res) => {
+    db.all("SELECT * FROM games WHERE home_team_id = ? OR away_team_id = ?", [req.params.id, req.params.id], (err, rows) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(rows);
     });
 });
 
