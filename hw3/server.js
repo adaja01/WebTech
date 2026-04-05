@@ -97,6 +97,9 @@ app.get("/api/players/:id", (req, res) => {
 
 //last 10 scores sorted on how recent they were.
 app.get("/api/games/scores", (req, res) => {
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = parseInt(req.query.offset) || 0;
+
     db.all(
         `SELECT games.*,
         home.name as home_team, away.name as away_team
@@ -104,8 +107,8 @@ app.get("/api/games/scores", (req, res) => {
         JOIN teams home ON games.home_team_id = home.id
         JOIN teams away ON games.away_team_id = away.id 
         WHERE is_upcoming = 0 
-        ORDER BY date DESC LIMIT 10`,
-        [],
+        ORDER BY date DESC LIMIT ? OFFSET ?`,
+        [limit, offset],
         (err, rows) => {
             if (err) {
                 return res.status(500).json({ error: err.message });
@@ -119,6 +122,8 @@ app.get("/api/games/scores", (req, res) => {
 
 //upcoming 10 games sorted in ascending order.
 app.get("/api/games/upcoming", (req, res) => {
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = parseInt(req.query.offset) || 0;
     db.all(
         `SELECT games.*,
         home.name as home_team, away.name as away_team
@@ -126,8 +131,8 @@ app.get("/api/games/upcoming", (req, res) => {
         JOIN teams home ON games.home_team_id = home.id
         JOIN teams away ON games.away_team_id = away.id
         WHERE is_upcoming = 1
-        ORDER BY date ASC LIMIT 10`,
-        [],
+        ORDER BY date ASC LIMIT ? OFFSET ?`,
+        [limit, offset],
         (err, rows) => {
             if (err) {
                 return res.status(500).json({ error: err.message });
