@@ -23,6 +23,20 @@ app.use(session({
     cookie: { secure: false }
 }));
 
+function requireAdmin(req, res, next) {
+    if (!req.session.user || !req.session.user.is_admin) {
+        return res.status(403).json({ error: "Forbidden" });
+    }
+    next();
+}
+
+function requireLogin(req, res, next) {
+    if (!req.session.user) {
+        return res.status(401).json({ error: "Not logged in" });
+    }
+    next();
+}
+
 //routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
@@ -265,10 +279,7 @@ app.get("/api/me", (req, res) => {
 //Profile api routes
 
 //Update profile
-app.put("/api/profile", async (req, res) => {
-    if (!req.session.user) {
-        return res.status(401).json({ error: "Not logged in" });
-    }
+app.put("/api/profile", requireLogin, async (req, res) => {
     const { first_name, last_name, email, current_pw, new_pw, favorite_team_id } = req.body;
 
     const updatedFirstName = first_name || req.session.user.first_name;
@@ -341,10 +352,7 @@ app.put("/api/profile", async (req, res) => {
 //Admin routes
 
 //update score
-app.put("/api/games/:id/score", (req, res) => {
-    if (!req.session.user || !req.session.user.is_admin) {
-        return res.status(403).json({ error: "Forbidden" });
-    }
+app.put("/api/games/:id/score", requireAdmin, (req, res) => {
     const { home_score, away_score } = req.body;
 
     db.run(
@@ -360,7 +368,7 @@ app.put("/api/games/:id/score", (req, res) => {
 });
 
 //add player
-app.post("/api/players/new", (req, res) => {
+app.post("/api/players", requireAdmin, (req, res) => {
     const { first_name, last_name, nationality, date_of_birth, role, number, photo, team_id } = req.body;
     db.run(
         "INSERT INTO players (first_name, last_name, nationality, date_of_birth, role, number, photo, team_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
@@ -375,7 +383,7 @@ app.post("/api/players/new", (req, res) => {
 });
 
 //remove player
-app.delete("/api/players/:id", (req, res) => {
+app.delete("/api/players/:id", requireAdmin, (req, res) => {
     db.run(
         "DELETE FROM players WHERE id=?",
         [req.params.id],
