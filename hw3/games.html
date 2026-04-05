@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The previous scores and upcoming games of Faze Clan."
+    />
+    <title>FaZe Clan | Members</title>
+
+    <!-- favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Cormorant+Garamond:ital,wght@1,300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- scripts -->
+    <script src="js/appearance-menus.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="index.html" class="nav__link">Home</a>
+          </li>
+          <li class="nav__item">
+            <a href="history.html" class="nav__link">History</a>
+          </li>
+          <li class="nav__item">
+            <a
+              href="members.html"
+              aria-current="page"
+              class="nav__link nav__link--active"
+              >Members</a
+            >
+          </li>
+          <li class="nav__item">
+            <a href="achievements.html" class="nav__link">Achievements</a>
+          </li>
+          <li class="nav__item">
+            <a href="contact.html" class="nav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="menu-container">
+        <label class="menu-container__title">Style Menu:</label>
+        <select id="element-select">
+          <option value="" disabled selected>Choose element</option>
+        </select>
+        <select id="appearance-select">
+          <option value="" disabled selected>Choose option</option>
+          <option value="font-size">Font Size</option>
+          <option value="font-color">Font Color</option>
+        </select>
+      </div>
+    </header>
+    <main>
+      <section class="page-header">
+        <h1 class="page-header__title">FaZe scores and upcoming games</h1>
+        <p class="page-header__subtitle">
+          The previous scores and upcoming games of Faze Clan.
+        </p>
+      </section>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="scores-body"></tbody>
+      </table>
+      <button onclick="loadMoreScores()">Show more</button>
+    </main>
+    <footer>
+      <p class="footer__text">
+        Deliverable for the INFOB2WT course at Utrecht University - Written by
+        group 41
+      </p>
+    </footer>
+    <script type="module" src="js/main.js"></script>
+    <!-- <script>
+      async function getScores() {
+        let res = await fetch("/api/games/scores");
+        let scores = await res.json();
+
+        let tbody = document.getElementById("scores-body");
+        tbody.innerHTML = scores
+          .map(
+            (game) => `
+      <tr>
+        <td>${game.date}</td>
+        <td>${game.home_team}</td>
+        <td>${game.away_team}</td>
+        <td>${game.home_score} - ${game.away_score}</td>
+      </tr>
+    `,
+          )
+          .join("");
+      }
+
+      getScores();
+    </script> -->
+    <script>
+      let offset = 0;
+      const limit = 10;
+
+      // function to load games and append to the list
+      async function loadMoreScores() {
+          const response = await fetch(/api/games/scores?limit=${limit}&offset=${offset});
+          const games = await response.json();
+
+          // append each game to the list
+          let tbody = document.getElementById("scores-body");
+                  tbody.innerHTML = games
+                      .map(
+                      (game) => `
+                  <tr>
+                  <td>${game.date}</td>
+                  <td>${game.home_team}</td>
+                  <td>${game.away_team}</td>
+                  <td>${game.home_score} - ${game.away_score}</td>
+                  </tr>
+              `,
+                      )
+                      .join("");
+                  }
+
+          // increase offset for next load
+          offset += games.length;
+
+          // hide "load more" button if less than 10 games returned
+          // (means there are no more games to load)
+          if (games.length < limit) {
+              document.getElementById('load-more-btn').style.display = 'none';
+          }
+      }
+
+      // load first 10 on page load
+      loadMoreScores();
+
+      // load more when button is clicked
+    </script>
+  </body>
+</html>
