@@ -7,7 +7,7 @@
       name="description"
       content="The previous scores and upcoming games of Faze Clan."
     />
-    <title>FaZe Clan | Upcoming</title>
+    <title>FaZe Clan | Leaderboard</title>
 
     <!-- favicon -->
     <link
@@ -81,22 +81,25 @@
     </header>
     <main>
       <section class="page-header">
-        <h1 class="page-header__title">CS2 upcoming games</h1>
+        <h1 class="page-header__title">CS2 Leaderboard</h1>
         <p class="page-header__subtitle">
-          The upcoming games of the CS2 competition.
+          The Leaderboard of the CS2 competition.
         </p>
       </section>
       <table class="member-table">
         <thead>
           <tr>
-            <th class="member-table__header">Date</th>
-            <th class="member-table__header">Home Team</th>
-            <th class="member-table__header">Away Team</th>
+            <th class="member-table__header"></th>
+            <th class="member-table__header">Name</th>
+            <th class="member-table__header">Points</th>
+            <th class="member-table__header">Matches Played</th>
+            <th class="member-table__header">Wins</th>
+            <th class="member-table__header">Losses</th>
+            <th class="member-table__header">Map difference</th>
           </tr>
         </thead>
         <tbody id="scores-body"></tbody>
       </table>
-      <button id="load-more-btn" onclick="loadMoreGames()">Show more</button>
     </main>
     <footer>
       <p class="footer__text">
@@ -106,40 +109,31 @@
     </footer>
     <script type="module" src="js/main.js"></script>
     <script>
-      let offset = 0;
-      const limit = 10;
-
       // function to load games and append to the list
-      async function loadMoreGames() {
-        const response = await fetch(
-          `/api/games/upcoming?limit=${limit}&offset=${offset}`,
-        );
+      async function loadLeaderboard() {
+        const response = await fetch(`/api/leaderboard`);
         const games = await response.json();
 
         // append each game to the list
         let tbody = document.getElementById("scores-body");
-        tbody.innerHTML += games
+        tbody.innerHTML = games
           .map(
             (game) => `
                   <tr class="member-table__row">
-                  <td class="member-table__cell">${game.date}</td>
-                  <td class="member-table__cell">${game.home_team}</td>
-                  <td class="member-table__cell">${game.away_team}</td>
+                  <td class="member-table__cell"><img class="history-article__logo" src=${game.logo} alt=${game.name}></td>
+                  <td class="member-table__cell">${game.name}</td>
+                  <td class="member-table__cell">${game.points}</td>
+                  <td class="member-table__cell">${game.total}</td>
+                  <td class="member-table__cell">${game.wins}</td>
+                  <td class="member-table__cell">${game.losses}</td>
+                  <td class="member-table__cell">${game.map_diff}</td>
                   </tr>
               `,
           )
           .join("");
-        // increase offset for next load
-        offset += 10;
-
-        // hide "load more" button if less than 10 games returned
-        if (games.length < limit) {
-          document.getElementById("load-more-btn").style.display = "none";
-        }
       }
 
-      // load first 10 on page load
-      loadMoreGames();
+      loadLeaderboard();
     </script>
   </body>
 </html>

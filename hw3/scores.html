@@ -135,7 +135,6 @@
         offset += 10;
 
         // hide "load more" button if less than 10 games returned
-        // (means there are no more games to load)
         if (games.length < limit) {
           document.getElementById("load-more-btn").style.display = "none";
         }
@@ -143,8 +142,6 @@
 
       // load first 10 on page load
       loadMoreScores();
-
-      // load more when button is clicked
     </script>
   </body>
 </html>
