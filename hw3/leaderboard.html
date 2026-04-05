@@ -1,15 +1,13 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="
-            The ultimate fan site for FaZe Clan esports.
-            Explore its history, current rosters, and championship achievements."
+      content="The previous scores and upcoming games of Faze Clan."
     />
-    <title>FaZe Clan | Home</title>
+    <title>FaZe Clan | Leaderboard</title>
 
     <!-- favicon -->
     <link
@@ -43,32 +41,23 @@
     <!-- scripts -->
     <script src="js/appearance-menus.js" defer></script>
   </head>
-  <body class="body--index">
+  <body>
     <header>
       <nav class="nav">
         <ul class="nav__list">
           <li class="nav__item">
-            <a
-              href="index.html"
-              aria-current="page"
-              class="nav__link nav__link--active"
-              >Home</a
-            >
+            <a href="index.html" class="nav__link">Home</a>
           </li>
           <li class="nav__item">
             <a href="history.html" class="nav__link">History</a>
           </li>
           <li class="nav__item">
-            <a href="scores.html" class="nav__link">Scores</a>
-          </li>
-          <li class="nav__item">
-            <a href="upcoming.html" class="nav__link">Upcoming</a>
-          </li>
-          <li class="nav__item">
-            <a href="leaderboard.html" class="nav__link">Leaderboard</a>
-          </li>
-          <li class="nav__item">
-            <a href="members.html" class="nav__link">Members</a>
+            <a
+              href="members.html"
+              aria-current="page"
+              class="nav__link nav__link--active"
+              >Members</a
+            >
           </li>
           <li class="nav__item">
             <a href="achievements.html" class="nav__link">Achievements</a>
@@ -90,18 +79,27 @@
         </select>
       </div>
     </header>
-    <main class="main--index">
-      <section class="hero">
-        <div class="hero__content">
-          <h1 class="hero__title">FaZe Up!</h1>
-          <p class="hero__subtitle"><em>Everything about FaZe Clan</em></p>
-        </div>
-        <img
-          src="assets/images/faze-logo-og.png"
-          alt="Official FaZe Clan Logo"
-          class="hero__image"
-        />
+    <main>
+      <section class="page-header">
+        <h1 class="page-header__title">CS2 Leaderboard</h1>
+        <p class="page-header__subtitle">
+          The Leaderboard of the CS2 competition.
+        </p>
       </section>
+      <table class="member-table">
+        <thead>
+          <tr>
+            <th class="member-table__header"></th>
+            <th class="member-table__header">Name</th>
+            <th class="member-table__header">Points</th>
+            <th class="member-table__header">Matches Played</th>
+            <th class="member-table__header">Wins</th>
+            <th class="member-table__header">Losses</th>
+            <th class="member-table__header">Map difference</th>
+          </tr>
+        </thead>
+        <tbody id="scores-body"></tbody>
+      </table>
     </main>
     <footer>
       <p class="footer__text">
@@ -109,5 +107,33 @@
         group 41
       </p>
     </footer>
+    <script type="module" src="js/main.js"></script>
+    <script>
+      // function to load games and append to the list
+      async function loadLeaderboard() {
+        const response = await fetch(`/api/leaderboard`);
+        const games = await response.json();
+
+        // append each game to the list
+        let tbody = document.getElementById("scores-body");
+        tbody.innerHTML = games
+          .map(
+            (game) => `
+                  <tr class="member-table__row">
+                  <td class="member-table__cell"><img class="history-article__logo" src=${game.logo} alt=${game.name}></td>
+                  <td class="member-table__cell">${game.name}</td>
+                  <td class="member-table__cell">${game.points}</td>
+                  <td class="member-table__cell">${game.total}</td>
+                  <td class="member-table__cell">${game.wins}</td>
+                  <td class="member-table__cell">${game.losses}</td>
+                  <td class="member-table__cell">${game.map_diff}</td>
+                  </tr>
+              `,
+          )
+          .join("");
+      }
+
+      loadLeaderboard();
+    </script>
   </body>
 </html>
