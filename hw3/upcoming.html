@@ -7,7 +7,7 @@
       name="description"
       content="The previous scores and upcoming games of Faze Clan."
     />
-    <title>FaZe Clan | Members</title>
+    <title>FaZe Clan | Upcoming</title>
 
     <!-- favicon -->
     <link
@@ -81,23 +81,22 @@
     </header>
     <main>
       <section class="page-header">
-        <h1 class="page-header__title">FaZe scores and upcoming games</h1>
+        <h1 class="page-header__title">CS2 upcoming games</h1>
         <p class="page-header__subtitle">
-          The previous scores and upcoming games of Faze Clan.
+          The upcoming games of the CS2 competition.
         </p>
       </section>
-      <table>
+      <table class="member-table">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Home Team</th>
-            <th>Away Team</th>
-            <th>Score</th>
+            <th class="member-table__header">Date</th>
+            <th class="member-table__header">Home Team</th>
+            <th class="member-table__header">Away Team</th>
           </tr>
         </thead>
         <tbody id="scores-body"></tbody>
       </table>
-      <button onclick="loadMoreScores()">Show more</button>
+      <button id="load-more-btn" onclick="loadMoreGames()">Show more</button>
     </main>
     <footer>
       <p class="footer__text">
@@ -106,65 +105,42 @@
       </p>
     </footer>
     <script type="module" src="js/main.js"></script>
-    <!-- <script>
-      async function getScores() {
-        let res = await fetch("/api/games/scores");
-        let scores = await res.json();
-
-        let tbody = document.getElementById("scores-body");
-        tbody.innerHTML = scores
-          .map(
-            (game) => `
-      <tr>
-        <td>${game.date}</td>
-        <td>${game.home_team}</td>
-        <td>${game.away_team}</td>
-        <td>${game.home_score} - ${game.away_score}</td>
-      </tr>
-    `,
-          )
-          .join("");
-      }
-
-      getScores();
-    </script> -->
     <script>
       let offset = 0;
       const limit = 10;
 
       // function to load games and append to the list
-      async function loadMoreScores() {
-          const response = await fetch(/api/games/scores?limit=${limit}&offset=${offset});
-          const games = await response.json();
+      async function loadMoreGames() {
+        const response = await fetch(
+          `/api/games/upcoming?limit=${limit}&offset=${offset}`,
+        );
+        const games = await response.json();
 
-          // append each game to the list
-          let tbody = document.getElementById("scores-body");
-                  tbody.innerHTML = games
-                      .map(
-                      (game) => `
-                  <tr>
-                  <td>${game.date}</td>
-                  <td>${game.home_team}</td>
-                  <td>${game.away_team}</td>
-                  <td>${game.home_score} - ${game.away_score}</td>
+        // append each game to the list
+        let tbody = document.getElementById("scores-body");
+        tbody.innerHTML += games
+          .map(
+            (game) => `
+                  <tr class="member-table__row">
+                  <td class="member-table__cell">${game.date}</td>
+                  <td class="member-table__cell">${game.home_team}</td>
+                  <td class="member-table__cell">${game.away_team}</td>
                   </tr>
               `,
-                      )
-                      .join("");
-                  }
+          )
+          .join("");
+        // increase offset for next load
+        offset += 10;
 
-          // increase offset for next load
-          offset += games.length;
-
-          // hide "load more" button if less than 10 games returned
-          // (means there are no more games to load)
-          if (games.length < limit) {
-              document.getElementById('load-more-btn').style.display = 'none';
-          }
+        // hide "load more" button if less than 10 games returned
+        // (means there are no more games to load)
+        if (games.length < limit) {
+          document.getElementById("load-more-btn").style.display = "none";
+        }
       }
 
       // load first 10 on page load
-      loadMoreScores();
+      loadMoreGames();
 
       // load more when button is clicked
     </script>
