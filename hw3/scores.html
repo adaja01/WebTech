@@ -124,8 +124,8 @@
             (game) => `
                   <tr class="member-table__row">
                   <td class="member-table__cell">${game.date}</td>
-                  <td class="member-table__cell">${game.home_team}</td>
-                  <td class="member-table__cell">${game.away_team}</td>
+                  <td class="member-table__cell"><a href="team.html?id=${game.home_team_id}">${game.home_team}</a></td>
+                  <td class="member-table__cell"><a href="team.html?id=${game.away_team_id}">${game.away_team}</a></td>
                   <td class="member-table__cell">${game.home_score} - ${game.away_score}</td>
                   </tr>
               `,

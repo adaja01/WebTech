@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The previous scores and upcoming games of Faze Clan."
+    />
+    <title>FaZe Clan | Team</title>
+
+    <!-- favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Cormorant+Garamond:ital,wght@1,300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- scripts -->
+    <script src="js/appearance-menus.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav class="team-nav nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a id="info-link" class="nav__link">Info</a>
+          </li>
+          <li class="nav__item">
+            <a id="players-link" class="nav__link">Players</a>
+          </li>
+          <li class="nav__item">
+            <a id="games-link" class="nav__link nav__link--active">Games</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="menu-container">
+        <label class="menu-container__title">Style Menu:</label>
+        <select id="element-select">
+          <option value="" disabled selected>Choose element</option>
+        </select>
+        <select id="appearance-select">
+          <option value="" disabled selected>Choose option</option>
+          <option value="font-size">Font Size</option>
+          <option value="font-color">Font Color</option>
+        </select>
+      </div>
+    </header>
+    <main>
+      <section class="page-header">
+        <h1 class="page-header__title">Games</h1>
+        <table class="member-table">
+          <thead>
+            <tr>
+              <th class="member-table__header">Date</th>
+              <th class="member-table__header">Opponent</th>
+              <th class="member-table__header">Score</th>
+            </tr>
+          </thead>
+          <tbody id="games-body"></tbody>
+        </table>
+      </section>
+
+      <script src="team.js"></script>
+    </main>
+    <footer>
+      <p class="footer__text">
+        Deliverable for the INFOB2WT course at Utrecht University - Written by
+        group 41
+      </p>
+    </footer>
+    <script type="module" src="js/main.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const teamId = params.get("id");
+
+      document.getElementById("info-link").href = `team.html?id=${teamId}`;
+      document.getElementById("players-link").href =
+        `team-players.html?id=${teamId}`;
+      document.getElementById("games-link").href =
+        `team-games.html?id=${teamId}`;
+
+      fetch(`/api/teams/${teamId}/games`)
+        .then((res) => res.json())
+        .then((games) => {
+          const tbody = document.getElementById("games-body");
+
+          tbody.innerHTML = games
+            .map(
+              (g) => `
+      <tr class="member-table__row">
+        <td class="member-table__cell">${g.date}</td>
+        <td class="member-table__cell">
+          ${g.home_team} vs ${g.away_team}
+        </td>
+        <td class="member-table__cell">
+          ${g.home_score ?? "-"} - ${g.away_score ?? "-"}
+        </td>
+      </tr>
+    `,
+            )
+            .join("");
+        });
+    </script>
+  </body>
+</html>
