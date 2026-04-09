@@ -174,7 +174,7 @@ function getFavoriteTeamClass(teamId, user) {
  */
 async function highlightFavoriteTeam() {
   const user = await getCurrentUser();
-  if (!user) return;
+  if (!user) {return;}
 
   // Find all team elements with data-team-id attribute
   const teamElements = document.querySelectorAll("[data-team-id]");

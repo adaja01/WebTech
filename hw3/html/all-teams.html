@@ -83,41 +83,43 @@
             <th class="member-table__header"></th>
           </tr>
         </thead>
-        <tbody id="teams-body"></tbody>
-      </table>
-    </main>
-    <footer>
-      <p class="footer__text">
-        Deliverable for the INFOB2WT course at Utrecht University - Written by
-        group 41
-      </p>
-    </footer>
-    <script>
-      async function loadTeams() {
-        const res = await fetch("/api/teams");
-        const teams = await res.json();
+         <tbody id="teams-body"></tbody>
+       </table>
+     </main>
+     <footer>
+       <p class="footer__text">
+         Deliverable for the INFOB2WT course at Utrecht University - Written by
+         group 41
+       </p>
+     </footer>
+     <script src="../js/auth.js"></script>
+     <script>
+       async function loadTeams() {
+         const res = await fetch("/api/teams");
+         const teams = await res.json();
 
-        const tbody = document.getElementById("teams-body");
+         const tbody = document.getElementById("teams-body");
 
-        tbody.innerHTML = teams
-          .map(
-            (team) => `
-      <tr class="member-table__row">
-        <td class="member-table__cell">
-          <a href="team.html?id=${team.id}" target="_blank">
-            ${team.name}
-          </a>
-        </td>
-        <td class="member-table__cell">
-          <img src="${team.logo}" alt="${team.name} logo" class="history-article__logo">
-        </td>
-      </tr>
-    `,
-          )
-          .join("");
-      }
+         tbody.innerHTML = teams
+           .map(
+             (team) => `
+       <tr class="member-table__row" data-team-id="${team.id}">
+         <td class="member-table__cell">
+           <a href="team.html?id=${team.id}" target="_blank">
+             ${team.name}
+           </a>
+         </td>
+         <td class="member-table__cell">
+           <img src="${team.logo}" alt="${team.name} logo" class="history-article__logo">
+         </td>
+       </tr>
+     `,
+           )
+           .join("");
+         highlightFavoriteTeam();
+       }
 
-      loadTeams();
-    </script>
+       loadTeams();
+     </script>
   </body>
 </html>

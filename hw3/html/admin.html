@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Admin panel for managing CS2 League."
+    />
+    <title>CS2 | Admin Panel</title>
+
+    <!-- favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Cormorant+Garamond:ital,wght@1,300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../js/auth.js"></script>
+    <style>
+      .admin-section {
+        margin-bottom: var(--space-lg);
+        padding: var(--space-md);
+        background-color: var(--surface-subtle);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--border-radius-md);
+      }
+
+      .admin-section__title {
+        font-family: var(--font-secondary), serif;
+        font-size: var(--font-size-md);
+        color: var(--primary-color);
+        margin: 0 0 var(--space-md);
+        padding-bottom: var(--space-xs);
+        border-bottom: var(--border-width) solid var(--primary-color);
+      }
+
+      .game-form {
+        display: grid;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-md);
+        padding: var(--space-sm);
+        background-color: var(--background-color);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--border-radius-sm);
+      }
+
+      .game-form__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr auto;
+        gap: var(--space-xs);
+        align-items: end;
+      }
+
+      .game-form__cell {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+      }
+
+      .game-form__label {
+        font-size: var(--font-size-xs);
+        color: var(--muted-text-color);
+        font-weight: bold;
+      }
+
+      .game-form__input {
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--border-radius-sm);
+        padding: var(--space-xs);
+        font-size: var(--font-size-xs);
+      }
+
+      .game-form__button {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        border: none;
+        padding: var(--space-xs) var(--space-sm);
+        border-radius: var(--border-radius-sm);
+        cursor: pointer;
+        font-size: var(--font-size-xs);
+        font-weight: bold;
+        transition: transform 0.2s ease;
+      }
+
+      .game-form__button:hover {
+        transform: scale(1.05);
+      }
+
+      .game-form__button--secondary {
+        background-color: #ff6b00;
+      }
+
+      .game-form__button--danger {
+        background-color: #8b0000;
+      }
+
+      .player-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-sm);
+        padding: var(--space-sm);
+        background-color: var(--background-color);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--border-radius-sm);
+        margin-bottom: var(--space-md);
+      }
+
+      .player-form__buttons {
+        grid-column: 1 / -1;
+        display: flex;
+        gap: var(--space-xs);
+        justify-content: flex-end;
+      }
+
+      .admin-message {
+        padding: var(--space-sm);
+        border-radius: var(--border-radius-sm);
+        margin-bottom: var(--space-md);
+        font-size: var(--font-size-sm);
+      }
+
+      .admin-message--success {
+        background-color: rgba(0, 255, 0, 0.2);
+        border: 1px solid #00ff00;
+        color: #00ff00;
+      }
+
+      .admin-message--error {
+        background-color: rgba(255, 0, 0, 0.2);
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .access-denied {
+        text-align: center;
+        padding: var(--space-lg);
+      }
+
+      .access-denied__title {
+        font-family: var(--font-primary), sans-serif;
+        font-size: var(--font-size-md);
+        color: var(--primary-color);
+        margin-bottom: var(--space-sm);
+      }
+
+      .access-denied__link {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .game-form__row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="index.html" class="nav__link">LeaderBoard</a>
+          </li>
+          <li class="nav__item">
+            <a href="scores.html" class="nav__link">Scores</a>
+          </li>
+          <li class="nav__item">
+            <a href="upcoming.html" class="nav__link">Upcoming</a>
+          </li>
+          <li class="nav__item">
+            <a href="all-teams.html" class="nav__link">Teams</a>
+          </li>
+          <li class="nav__item">
+            <a href="all-players.html" class="nav__link">Players</a>
+          </li>
+          <li class="nav__item">
+            <a href="info.html" class="nav__link">Info</a>
+          </li>
+          <li class="nav__item">
+            <a
+              href="admin.html"
+              aria-current="page"
+              class="nav__link nav__link--active"
+              >Admin</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="page-header">
+        <h1 class="page-header__title">Admin Panel</h1>
+        <p class="page-header__subtitle">
+          Manage games, players, and scores.
+        </p>
+      </section>
+
+      <div id="access-denied" class="access-denied" style="display: none;">
+        <h2 class="access-denied__title">Access Denied</h2>
+        <p>You must be logged in as an admin to access this page.</p>
+        <a href="login.html" class="access-denied__link">Login here</a>
+      </div>
+
+      <div id="admin-content" style="display: none;">
+        <div id="admin-message" class="admin-message" style="display: none;"></div>
+
+        <!-- Upcoming Games Section -->
+        <div class="admin-section">
+          <h2 class="admin-section__title">Update Upcoming Games</h2>
+          <p style="color: var(--muted-text-color); font-size: var(--font-size-sm);">
+            Set final scores for upcoming games to move them to completed games.
+          </p>
+          <div id="upcoming-games-container"></div>
+        </div>
+
+        <!-- Add Player Section -->
+        <div class="admin-section">
+          <h2 class="admin-section__title">Add New Player</h2>
+          <form id="add-player-form" class="player-form">
+            <div class="player-form__group">
+              <label for="add-first-name" class="form-label">First Name:</label>
+              <input
+                type="text"
+                id="add-first-name"
+                required
+                class="game-form__input"
+              />
+            </div>
+            <div class="player-form__group">
+              <label for="add-last-name" class="form-label">Last Name:</label>
+              <input
+                type="text"
+                id="add-last-name"
+                required
+                class="game-form__input"
+              />
+            </div>
+            <div class="player-form__group">
+              <label for="add-nationality" class="form-label">Nationality:</label>
+              <input
+                type="text"
+                id="add-nationality"
+                class="game-form__input"
+              />
+            </div>
+            <div class="player-form__group">
+              <label for="add-dob" class="form-label">Date of Birth:</label>
+              <input
+                type="date"
+                id="add-dob"
+                class="game-form__input"
+              />
+            </div>
+            <div class="player-form__group">
+              <label for="add-role" class="form-label">Role:</label>
+              <input
+                type="text"
+                id="add-role"
+                class="game-form__input"
+              />
+            </div>
+            <div class="player-form__group">
+              <label for="add-number" class="form-label">Number:</label>
+              <input
+                type="number"
+                id="add-number"
+                class="game-form__input"
+              />
+            </div>
+            <div class="player-form__group">
+              <label for="add-photo" class="form-label">Photo URL:</label>
+              <input
+                type="text"
+                id="add-photo"
+                class="game-form__input"
+              />
+            </div>
+            <div class="player-form__group">
+              <label for="add-team" class="form-label">Team:</label>
+              <select id="add-team" required class="game-form__input"></select>
+            </div>
+            <div class="player-form__buttons">
+              <button type="submit" class="game-form__button">Add Player</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Players Management Section -->
+        <div class="admin-section">
+          <h2 class="admin-section__title">Manage Players</h2>
+          <div id="players-management-container"></div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p class="footer__text">
+        Deliverable for the INFOB2WT course at Utrecht University - Written by
+        group 41
+      </p>
+    </footer>
+
+    <script src="../js/auth.js"></script>
+    <script>
+      /**
+       * Initialize admin panel
+       */
+      async function initializeAdmin() {
+        const user = await getCurrentUser();
+        const accessDenied = document.getElementById("access-denied");
+        const adminContent = document.getElementById("admin-content");
+
+        if (!user || !user.is_admin) {
+          accessDenied.style.display = "block";
+          adminContent.style.display = "none";
+          return;
+        }
+
+        adminContent.style.display = "block";
+        loadUpcomingGames();
+        loadTeamsForForm();
+        loadPlayersForManagement();
+      }
+
+      /**
+       * Load upcoming games and create score forms
+       */
+      async function loadUpcomingGames() {
+        try {
+          const response = await fetch("/api/games/admin/upcoming");
+          const games = await response.json();
+
+          const container = document.getElementById("upcoming-games-container");
+
+          if (games.length === 0) {
+            container.innerHTML = '<p style="color: var(--muted-text-color);">No upcoming games.</p>';
+            return;
+          }
+
+          container.innerHTML = games
+            .map(
+              (game) => `
+                <div class="game-form">
+                  <div class="game-form__row">
+                    <div class="game-form__cell">
+                      <span class="game-form__label">Date</span>
+                      <span style="color: var(--text-color);">${game.date}</span>
+                    </div>
+                    <div class="game-form__cell">
+                      <span class="game-form__label">${game.home_team}</span>
+                      <input
+                        type="number"
+                        class="game-form__input home-score"
+                        data-game-id="${game.id}"
+                        placeholder="0"
+                        min="0"
+                      />
+                    </div>
+                    <div class="game-form__cell">
+                      <span class="game-form__label">vs</span>
+                    </div>
+                    <div class="game-form__cell">
+                      <span class="game-form__label">${game.away_team}</span>
+                      <input
+                        type="number"
+                        class="game-form__input away-score"
+                        data-game-id="${game.id}"
+                        placeholder="0"
+                        min="0"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      class="game-form__button game-form__button--secondary"
+                      onclick="updateGameScore(${game.id})">
+                      Set Score
+                    </button>
+                  </div>
+                </div>
+              `,
+            )
+            .join("");
+        } catch (error) {
+          showAdminMessage("Error loading upcoming games", "error");
+          console.error("Error loading games:", error);
+        }
+      }
+
+      /**
+       * Update game score and move to completed games
+       */
+      async function updateGameScore(gameId) {
+        const homeScoreInput = document.querySelector(
+          `.home-score[data-game-id="${gameId}"]`,
+        );
+        const awayScoreInput = document.querySelector(
+          `.away-score[data-game-id="${gameId}"]`,
+        );
+
+        const homeScore = parseInt(homeScoreInput.value);
+        const awayScore = parseInt(awayScoreInput.value);
+
+        if (isNaN(homeScore) || isNaN(awayScore)) {
+          showAdminMessage("Please enter valid scores", "error");
+          return;
+        }
+
+        try {
+          const response = await fetch(`/api/games/${gameId}/score`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              home_score: homeScore,
+              away_score: awayScore,
+            }),
+          });
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            showAdminMessage(result.error || "Error updating score", "error");
+            return;
+          }
+
+          showAdminMessage("Game score updated successfully!", "success");
+          setTimeout(() => {
+            loadUpcomingGames();
+          }, 1500);
+        } catch (error) {
+          showAdminMessage("Error updating game score", "error");
+          console.error("Error:", error);
+        }
+      }
+
+      /**
+       * Load teams for the add player form
+       */
+      async function loadTeamsForForm() {
+        try {
+          const response = await fetch("/api/teams");
+          const teams = await response.json();
+          const select = document.getElementById("add-team");
+
+          select.innerHTML = teams
+            .map((team) => `<option value="${team.id}">${team.name}</option>`)
+            .join("");
+        } catch (error) {
+          console.error("Error loading teams:", error);
+        }
+      }
+
+      /**
+       * Handle add player form submission
+       */
+      document
+        .getElementById("add-player-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const playerData = {
+            first_name: document.getElementById("add-first-name").value,
+            last_name: document.getElementById("add-last-name").value,
+            nationality: document.getElementById("add-nationality").value,
+            date_of_birth: document.getElementById("add-dob").value,
+            role: document.getElementById("add-role").value,
+            number: document.getElementById("add-number").value,
+            photo: document.getElementById("add-photo").value,
+            team_id: parseInt(document.getElementById("add-team").value),
+          };
+
+          try {
+            const response = await fetch("/api/players", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(playerData),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+              showAdminMessage(result.error || "Error adding player", "error");
+              return;
+            }
+
+            showAdminMessage("Player added successfully!", "success");
+            e.target.reset();
+            setTimeout(() => {
+              loadPlayersForManagement();
+            }, 1500);
+          } catch (error) {
+            showAdminMessage("Error adding player", "error");
+            console.error("Error:", error);
+          }
+        });
+
+      /**
+       * Load players for management section
+       */
+      async function loadPlayersForManagement() {
+        try {
+          const response = await fetch("/api/players");
+          const players = await response.json();
+
+          const container = document.getElementById("players-management-container");
+
+          if (players.length === 0) {
+            container.innerHTML = '<p style="color: var(--muted-text-color);">No players found.</p>';
+            return;
+          }
+
+          container.innerHTML = `
+            <table class="member-table">
+              <thead>
+                <tr>
+                  <th class="member-table__header">Name</th>
+                  <th class="member-table__header">Role</th>
+                  <th class="member-table__header">Number</th>
+                  <th class="member-table__header">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${players
+                  .map(
+                    (player) => `
+                  <tr class="member-table__row">
+                    <td class="member-table__cell">${player.first_name} ${player.last_name}</td>
+                    <td class="member-table__cell">${player.role || "N/A"}</td>
+                    <td class="member-table__cell">${player.number || "N/A"}</td>
+                    <td class="member-table__cell">
+                      <button
+                        class="game-form__button game-form__button--danger"
+                        onclick="deletePlayer(${player.id})">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                `,
+                  )
+                  .join("")}
+              </tbody>
+            </table>
+          `;
+        } catch (error) {
+          console.error("Error loading players:", error);
+        }
+      }
+
+      /**
+       * Delete a player
+       */
+      async function deletePlayer(playerId) {
+        if (!confirm("Are you sure you want to delete this player?")) {
+          return;
+        }
+
+        try {
+          const response = await fetch(`/api/players/${playerId}`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            showAdminMessage(result.error || "Error deleting player", "error");
+            return;
+          }
+
+          showAdminMessage("Player deleted successfully!", "success");
+          setTimeout(() => {
+            loadPlayersForManagement();
+          }, 1500);
+        } catch (error) {
+          showAdminMessage("Error deleting player", "error");
+          console.error("Error:", error);
+        }
+      }
+
+      /**
+       * Show admin message
+       */
+      function showAdminMessage(message, type) {
+        const messageDiv = document.getElementById("admin-message");
+        messageDiv.className = `admin-message admin-message--${type}`;
+        messageDiv.textContent = message;
+        messageDiv.style.display = "block";
+
+        setTimeout(() => {
+          messageDiv.style.display = "none";
+        }, 5000);
+      }
+
+      // Initialize on page load
+      document.addEventListener("DOMContentLoaded", initializeAdmin);
+    </script>
+  </body>
+</html>
+

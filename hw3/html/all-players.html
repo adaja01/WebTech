@@ -83,41 +83,43 @@
             <th class="member-table__header"></th>
           </tr>
         </thead>
-        <tbody id="players-body"></tbody>
-      </table>
-    </main>
-    <footer>
-      <p class="footer__text">
-        Deliverable for the INFOB2WT course at Utrecht University - Written by
-        group 41
-      </p>
-    </footer>
-    <script>
-      async function loadPlayers() {
-        const res = await fetch("/api/players");
-        const players = await res.json();
+         <tbody id="players-body"></tbody>
+       </table>
+     </main>
+     <footer>
+       <p class="footer__text">
+         Deliverable for the INFOB2WT course at Utrecht University - Written by
+         group 41
+       </p>
+     </footer>
+     <script src="../js/auth.js"></script>
+     <script>
+       async function loadPlayers() {
+         const res = await fetch("/api/players");
+         const players = await res.json();
 
-        const tbody = document.getElementById("players-body");
+         const tbody = document.getElementById("players-body");
 
-        tbody.innerHTML = players
-          .map(
-            (player) => `
-      <tr class="member-table__row">
-        <td class="member-table__cell">
-          <a href="player.html?id=${player.id}" target="_blank">
-            ${player.first_name} ${player.last_name}
-          </a>
-        </td>
-        <td class="member-table__cell">
-          <img src="${player.photo}" alt="${player.first_name} photo" class="history-article__logo">
-        </td>
-      </tr>
-    `,
-          )
-          .join("");
-      }
+         tbody.innerHTML = players
+           .map(
+             (player) => `
+       <tr class="member-table__row" data-team-id="${player.team_id}">
+         <td class="member-table__cell">
+           <a href="player.html?id=${player.id}" target="_blank">
+             ${player.first_name} ${player.last_name}
+           </a>
+         </td>
+         <td class="member-table__cell">
+           <img src="${player.photo}" alt="${player.first_name} photo" class="history-article__logo">
+         </td>
+       </tr>
+     `,
+           )
+           .join("");
+         highlightFavoriteTeam();
+       }
 
-      loadPlayers();
-    </script>
+       loadPlayers();
+     </script>
   </body>
 </html>
