@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Login to your CS2 League account."
+    />
+    <title>CS2 League | Login</title>
+
+    <!-- favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Cormorant+Garamond:ital,wght@1,300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="index.html" class="nav__link">LeaderBoard</a>
+          </li>
+          <li class="nav__item">
+            <a href="scores.html" class="nav__link">Scores</a>
+          </li>
+          <li class="nav__item">
+            <a href="upcoming.html" class="nav__link">Upcoming</a>
+          </li>
+          <li class="nav__item">
+            <a href="all-teams.html" class="nav__link">Teams</a>
+          </li>
+          <li class="nav__item">
+            <a href="all-players.html" class="nav__link">Players</a>
+          </li>
+          <li class="nav__item">
+            <a href="info.html" class="nav__link">Info</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-header">
+        <h1 class="page-header__title">Login</h1>
+        <p class="page-header__subtitle">
+          Sign in to your account to access personalized features.
+        </p>
+      </section>
+
+      <div class="auth-form-container">
+        <form class="auth-form" id="login-form">
+          <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              required
+              aria-label="Email address"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-input"
+              required
+              aria-label="Password"
+            />
+          </div>
+
+          <button type="submit" class="form-button">Login</button>
+
+          <div id="error-message" class="form-error" style="display: none;"></div>
+        </form>
+
+        <p class="auth-form__footer">
+          Don't have an account? <a href="register.html" class="auth-form__link">Register here</a>
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <p class="footer__text">
+        Deliverable for the INFOB2WT course at Utrecht University - Written by
+        group 41
+      </p>
+    </footer>
+
+    <script src="../js/auth.js"></script>
+    <script>
+      /**
+       * Handle login form submission
+       */
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const errorDiv = document.getElementById("error-message");
+
+          try {
+            const response = await login(email, password);
+
+            if (response.error) {
+              errorDiv.textContent = response.error;
+              errorDiv.style.display = "block";
+            } else {
+              // Login successful, redirect to home
+              window.location.href = "index.html";
+            }
+          } catch (error) {
+            errorDiv.textContent =
+              "An error occurred during login. Please try again.";
+            errorDiv.style.display = "block";
+            console.error("Login error:", error);
+          }
+        });
+    </script>
+  </body>
+</html>
+
+

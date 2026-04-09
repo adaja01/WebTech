@@ -460,6 +460,83 @@ app.delete("/api/players/:id", requireAdmin, (req, res) => {
   });
 });
 
+//update player
+app.put("/api/players/:id", requireAdmin, (req, res) => {
+  const {
+    first_name,
+    last_name,
+    nationality,
+    date_of_birth,
+    role,
+    number,
+    photo,
+    team_id,
+  } = req.body;
+
+  db.run(
+    "UPDATE players SET first_name=?, last_name=?, nationality=?, date_of_birth=?, role=?, number=?, photo=?, team_id=? WHERE id=?",
+    [
+      first_name,
+      last_name,
+      nationality,
+      date_of_birth,
+      role,
+      number,
+      photo,
+      team_id,
+      req.params.id,
+    ],
+    (err) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json({ message: "Player updated successfully!" });
+    },
+  );
+});
+
+//get all upcoming games for admin
+app.get("/api/games/admin/upcoming", requireAdmin, (req, res) => {
+  db.all(
+    `SELECT games.*,
+         home.name as home_team,
+         away.name as away_team
+    FROM games
+    JOIN teams home ON games.home_team_id = home.id
+    JOIN teams away ON games.away_team_id = away.id
+    WHERE is_upcoming = 1
+    ORDER BY date ASC`,
+    [],
+    (err, rows) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(rows);
+    },
+  );
+});
+
+//get all past games for admin
+app.get("/api/games/admin/scores", requireAdmin, (req, res) => {
+  db.all(
+    `SELECT games.*,
+         home.name as home_team,
+         away.name as away_team
+    FROM games
+    JOIN teams home ON games.home_team_id = home.id
+    JOIN teams away ON games.away_team_id = away.id
+    WHERE is_upcoming = 0
+    ORDER BY date DESC`,
+    [],
+    (err, rows) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(rows);
+    },
+  );
+});
+
 //start server
 app.listen(PORT, () => {
   console.log(`server running at http://localhost:${PORT}`);

@@ -522,6 +522,221 @@ footer {
     border-radius: var(--border-radius-sm);
 }
 
+/* Auth section in header */
+.auth-section {
+  background-color: var(--secondary-color);
+  padding: var(--space-xs) var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--font-size-xs);
+  width: 100%;
+  text-align: center;
+}
+
+.auth-section__user,
+.auth-section__guest {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.auth-section__welcome {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.auth-section__link {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.auth-section__link:hover {
+  color: var(--primary-color);
+}
+
+.auth-section__logout-btn {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-xs);
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-section__logout-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Auth forms */
+.auth-form-container {
+  max-width: 500px;
+  margin: 0 auto var(--space-lg);
+  padding: var(--space-md);
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-md);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form-label {
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+}
+
+.form-input,
+.form-input select {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--font-size-sm);
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus,
+.form-input select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}
+
+.form-button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.form-section-title {
+  font-family: var(--font-secondary), serif;
+  font-size: var(--font-size-md);
+  color: var(--primary-color);
+  margin: var(--space-md) 0 var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: var(--border-width) solid var(--primary-color);
+}
+
+.form-help-text {
+  font-size: var(--font-size-xs);
+  color: var(--muted-text-color);
+  margin: 0;
+}
+
+.form-error,
+.form-success {
+  padding: var(--space-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.form-error {
+  background-color: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.form-success {
+  background-color: rgba(0, 255, 0, 0.2);
+  border: 1px solid #00ff00;
+  color: #00ff00;
+}
+
+.auth-form__footer {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--muted-text-color);
+  margin: var(--space-sm) 0 0;
+}
+
+.auth-form__link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: text-decoration 0.2s ease;
+}
+
+.auth-form__link:hover {
+  text-decoration: underline;
+}
+
+/* Favorite team highlighting */
+.favorite-team {
+  background-color: rgba(255, 0, 0, 0.15) !important;
+  border-left: 4px solid var(--primary-color);
+}
+
+.favorite-team .member-table__cell {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.player-container {
+  max-width: var(--max-width);
+  margin: 0 auto var(--space-lg);
+  padding: var(--space-md);
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+#player-photo {
+  width: clamp(150px, 30vw, 300px);
+  height: auto;
+  border-radius: var(--border-radius-md);
+  border: var(--border-width) solid var(--primary-color);
+}
+
+@media (min-width: 768px) {
+  .player-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  #player-photo {
+    flex-shrink: 0;
+  }
+
+  .auth-form-container {
+    max-width: 600px;
+  }
+}
+
 @media (min-width: 1000px) {
   .hero {
     flex-direction: row;

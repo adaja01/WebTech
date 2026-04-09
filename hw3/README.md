@@ -9,19 +9,13 @@ Website for the third assignment of INFOB2WT, showcasing information about the F
     - `database.db` - SQLite database file containing all the data for the website
     - `schema.sql` - SQL schema for the database
 - `html/` - directory for HTML files
-    - `achievements.html` - achievements page
-    - `contact.html` - contact page
-    - `history.html` - history page
-    - `index.html` - home page
-    - `leaderboard.html` - leaderboard page
-    - `members.html` - members page
-    - `scores.html` - scores of previous tournaments page
-    - `upcoming.html` - upcoming tournaments page
 - `js/` - directory for JavaScript files
+  - `auth.js` - handles authentication and session management
 - `db.js` - database connection
 - `package.json` - npm package manifest
 - `package-lock.json` - pinned dependencies
-- `readme.txt` - this file
+- `README.md` - this file
+- `seed.js` - seeds the database with some initial data
 - `server.js` - entry point for the server, handles routing and serving of files
 
 ## Database
@@ -34,9 +28,10 @@ Website for the third assignment of INFOB2WT, showcasing information about the F
 
 ## Login
 ### Users
-- `admin` - password: `Shaded6-Unaudited1-Bribe8-Yarn2-Morale5`
-- `djgreenbean` - password: `greenBe@nnumber12`
-- `lucybedroque` - password: `loshtrushi444`
+- `admin@uu.nl` - password: `faze123`
+- `l.a.mouthaan@students.uu.nl` - password: `faze123`
+- `a.g.polhaar@students.uu.nl` - password: `faze123`
+- `s.l.bertram@students.uu.nl` - password: `faze123`
 
 ## Sources
 ### Team
