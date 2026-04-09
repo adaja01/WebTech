@@ -107,12 +107,9 @@
     </footer>
     <script type="module" src="js/main.js"></script>
     <script>
-      // function to load games and append to the list
       async function loadLeaderboard() {
         const response = await fetch(`/api/leaderboard`);
         const games = await response.json();
-
-        // append each game to the list
         let tbody = document.getElementById("scores-body");
         tbody.innerHTML = games
           .map(

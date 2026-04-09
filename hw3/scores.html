@@ -107,15 +107,11 @@
     <script>
       let offset = 0;
       const limit = 10;
-
-      // function to load games and append to the list
       async function loadMoreScores() {
         const response = await fetch(
           `/api/games/scores?limit=${limit}&offset=${offset}`,
         );
         const games = await response.json();
-
-        // append each game to the list
         let tbody = document.getElementById("scores-body");
         tbody.innerHTML += games
           .map(
@@ -129,10 +125,7 @@
               `,
           )
           .join("");
-        // increase offset for next load
         offset += 10;
-
-        // hide "load more" button if less than 10 games returned
         if (games.length < limit) {
           document.getElementById("load-more-btn").style.display = "none";
         }
