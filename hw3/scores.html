@@ -53,11 +53,20 @@
           </li>
           <li class="nav__item">
             <a
-              href="members.html"
+              href="scores.html"
               aria-current="page"
               class="nav__link nav__link--active"
-              >Members</a
+              >Scores</a
             >
+          </li>
+          <li class="nav__item">
+            <a href="upcoming.html" class="nav__link">Upcoming</a>
+          </li>
+          <li class="nav__item">
+            <a href="leaderboard.html" class="nav__link">Leaderboard</a>
+          </li>
+          <li class="nav__item">
+            <a href="members.html" class="nav__link">Members</a>
           </li>
           <li class="nav__item">
             <a href="achievements.html" class="nav__link">Achievements</a>
@@ -67,17 +76,6 @@
           </li>
         </ul>
       </nav>
-      <div class="menu-container">
-        <label class="menu-container__title">Style Menu:</label>
-        <select id="element-select">
-          <option value="" disabled selected>Choose element</option>
-        </select>
-        <select id="appearance-select">
-          <option value="" disabled selected>Choose option</option>
-          <option value="font-size">Font Size</option>
-          <option value="font-color">Font Color</option>
-        </select>
-      </div>
     </header>
     <main>
       <section class="page-header">
@@ -124,8 +122,8 @@
             (game) => `
                   <tr class="member-table__row">
                   <td class="member-table__cell">${game.date}</td>
-                  <td class="member-table__cell"><a href="team.html?id=${game.home_team_id}">${game.home_team}</a></td>
-                  <td class="member-table__cell"><a href="team.html?id=${game.away_team_id}">${game.away_team}</a></td>
+                  <td class="member-table__cell"><a href="team.html?id=${game.home_team_id}" target="_blank">${game.home_team}</a></td>
+                  <td class="member-table__cell"><a href="team.html?id=${game.away_team_id}" target="_blank">${game.away_team}</a></td>
                   <td class="member-table__cell">${game.home_score} - ${game.away_score}</td>
                   </tr>
               `,

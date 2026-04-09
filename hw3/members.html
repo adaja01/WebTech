@@ -1,37 +1,42 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="The members of FaZe Clan, including both content and esports members.">
+      content="The members of FaZe Clan, including both content and esports members."
+    />
     <title>FaZe Clan | Members</title>
 
     <!-- favicon -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="assets/favicon/apple-touch-icon.png">
+      href="assets/favicon/apple-touch-icon.png"
+    />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="assets/favicon/favicon-32x32.png">
+      href="assets/favicon/favicon-32x32.png"
+    />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon/site.webmanifest">
+      href="assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
 
     <!-- styles -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Cormorant+Garamond:ital,wght@1,300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
-      rel="stylesheet">
+      rel="stylesheet"
+    />
 
     <!-- scripts -->
     <script src="js/appearance-menus.js" defer></script>
@@ -45,6 +50,15 @@
           </li>
           <li class="nav__item">
             <a href="history.html" class="nav__link">History</a>
+          </li>
+          <li class="nav__item">
+            <a href="scores.html" class="nav__link">Scores</a>
+          </li>
+          <li class="nav__item">
+            <a href="upcoming.html" class="nav__link">Upcoming</a>
+          </li>
+          <li class="nav__item">
+            <a href="leaderboard.html" class="nav__link">Leaderboard</a>
           </li>
           <li class="nav__item">
             <a
@@ -62,17 +76,6 @@
           </li>
         </ul>
       </nav>
-      <div class="menu-container">
-        <label class="menu-container__title">Style Menu:</label>
-        <select id="element-select">
-          <option value="" disabled selected>Choose element</option>
-        </select>
-        <select id="appearance-select">
-          <option value="" disabled selected>Choose option</option>
-          <option value="font-size">Font Size</option>
-          <option value="font-color">Font Color</option>
-        </select>
-      </div>
     </header>
     <main>
       <section class="page-header">
@@ -84,13 +87,19 @@
       <section id="upload-section" class="upload-section">
         <h2>Select a JSON file to add to this page:</h2>
         <label for="members-input">Upload a file</label>
-        <input type="file" id="members-input" class="members-input" accept=".json">
+        <input
+          type="file"
+          id="members-input"
+          class="members-input"
+          accept=".json"
+        />
       </section>
       <div id="members-display"></div>
     </main>
     <footer>
       <p class="footer__text">
-        Deliverable for the INFOB2WT course at Utrecht University - Written by group 41
+        Deliverable for the INFOB2WT course at Utrecht University - Written by
+        group 41
       </p>
     </footer>
     <script type="module" src="js/main.js"></script>

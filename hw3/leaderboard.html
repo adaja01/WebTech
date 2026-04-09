@@ -52,12 +52,21 @@
             <a href="history.html" class="nav__link">History</a>
           </li>
           <li class="nav__item">
+            <a href="scores.html" class="nav__link">Scores</a>
+          </li>
+          <li class="nav__item">
+            <a href="upcoming.html" class="nav__link">Upcoming</a>
+          </li>
+          <li class="nav__item">
             <a
-              href="members.html"
+              href="leaderboard.html"
               aria-current="page"
               class="nav__link nav__link--active"
-              >Members</a
+              >Leaderboard</a
             >
+          </li>
+          <li class="nav__item">
+            <a href="members.html" class="nav__link">Members</a>
           </li>
           <li class="nav__item">
             <a href="achievements.html" class="nav__link">Achievements</a>
@@ -67,17 +76,6 @@
           </li>
         </ul>
       </nav>
-      <div class="menu-container">
-        <label class="menu-container__title">Style Menu:</label>
-        <select id="element-select">
-          <option value="" disabled selected>Choose element</option>
-        </select>
-        <select id="appearance-select">
-          <option value="" disabled selected>Choose option</option>
-          <option value="font-size">Font Size</option>
-          <option value="font-color">Font Color</option>
-        </select>
-      </div>
     </header>
     <main>
       <section class="page-header">
@@ -121,7 +119,7 @@
             (game) => `
                   <tr class="member-table__row">
                   <td class="member-table__cell"><img class="history-article__logo" src=${game.logo} alt=${game.name}></td>
-                  <td class="member-table__cell">${game.name}</td>
+                  <td class="member-table__cell"><a href="team.html?id=${game.id}" target="_blank">${game.name}</a></td>
                   <td class="member-table__cell">${game.points}</td>
                   <td class="member-table__cell">${game.total}</td>
                   <td class="member-table__cell">${game.wins}</td>

@@ -42,35 +42,35 @@
     <script src="js/appearance-menus.js" defer></script>
   </head>
   <body>
-    <header>
-      <nav class="team-nav nav">
-        <ul class="nav__list">
-          <li class="nav__item">
-            <a id="info-link" class="nav__link">Info</a>
-          </li>
-          <li class="nav__item">
-            <a id="players-link" class="nav__link">Players</a>
-          </li>
-          <li class="nav__item">
-            <a id="games-link" class="nav__link nav__link--active">Games</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
     <main>
       <section class="page-header">
-        <h1 class="page-header__title">Games</h1>
-        <table class="member-table">
-          <thead>
-            <tr>
-              <th class="member-table__header">Date</th>
-              <th class="member-table__header">Opponent</th>
-              <th class="member-table__header">Score</th>
-            </tr>
-          </thead>
-          <tbody id="games-body"></tbody>
-        </table>
+        <h1 id="player-name"></h1>
       </section>
+
+      <div class="player-container">
+        <img id="player-photo" alt="Player photo" />
+
+        <table class="member-table">
+          <tbody>
+            <tr>
+              <td class="member-table__cell">First Name</td>
+              <td class="member-table__cell" id="first-name"></td>
+            </tr>
+            <tr>
+              <td class="member-table__cell">Last Name</td>
+              <td class="member-table__cell" id="last-name"></td>
+            </tr>
+            <tr>
+              <td class="member-table__cell">Date of Birth</td>
+              <td class="member-table__cell" id="dob"></td>
+            </tr>
+            <tr>
+              <td class="member-table__cell">Role</td>
+              <td class="member-table__cell" id="role"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <script src="team.js"></script>
     </main>
@@ -83,33 +83,20 @@
     <script type="module" src="js/main.js"></script>
     <script>
       const params = new URLSearchParams(window.location.search);
-      const teamId = params.get("id");
+      const playerId = params.get("id");
 
-      document.getElementById("info-link").href = `team.html?id=${teamId}`;
-      document.getElementById("players-link").href =
-        `team-players.html?id=${teamId}`;
-      document.getElementById("games-link").href =
-        `team-games.html?id=${teamId}`;
-
-      fetch(`/api/teams/${teamId}/games`)
+      fetch(`/api/players/${playerId}`)
         .then((res) => res.json())
-        .then((games) => {
-          const tbody = document.getElementById("games-body");
+        .then((player) => {
+          document.getElementById("player-name").textContent =
+            `${player.first_name} ${player.last_name}`;
 
-          tbody.innerHTML = games
-            .map(
-              (g) => `
-      <tr class="member-table__row">
-        <td class="member-table__cell">${g.date}</td>
-        <td class="member-table__cell"><a href="team.html?id=${g.home_team_id}" target="_blank">${g.home_team}</a> vs <a href="team.html?id=${g.away_team_id}" target="_blank">${g.away_team}</a>
-        </td>
-        <td class="member-table__cell">
-          ${g.home_score ?? "-"} - ${g.away_score ?? "-"}
-        </td>
-      </tr>
-    `,
-            )
-            .join("");
+          document.getElementById("first-name").textContent = player.first_name;
+          document.getElementById("last-name").textContent = player.last_name;
+          document.getElementById("dob").textContent = player.date_of_birth;
+          document.getElementById("role").textContent = player.role;
+
+          document.getElementById("player-photo").src = player.photo;
         });
     </script>
   </body>
