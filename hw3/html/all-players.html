@@ -7,7 +7,7 @@
       name="description"
       content="The previous scores and upcoming games of Faze Clan."
     />
-    <title>CS2 | Upcoming</title>
+    <title>CS2 | All Players</title>
 
     <!-- favicon -->
     <link
@@ -49,18 +49,18 @@
             <a href="scores.html" class="nav__link">Scores</a>
           </li>
           <li class="nav__item">
-            <a
-              href="upcoming.html"
-              aria-current="page"
-              class="nav__link nav__link--active"
-              >Upcoming</a
-            >
+            <a href="upcoming.html" class="nav__link">Upcoming</a>
           </li>
           <li class="nav__item">
             <a href="all-teams.html" class="nav__link">Teams</a>
           </li>
           <li class="nav__item">
-            <a href="all-players.html" class="nav__link">Players</a>
+            <a
+              href="all-players.html"
+              aria-current="page"
+              class="nav__link nav__link--active"
+              >Players</a
+            >
           </li>
           <li class="nav__item">
             <a href="info.html" class="nav__link">Info</a>
@@ -70,22 +70,20 @@
     </header>
     <main>
       <section class="page-header">
-        <h1 class="page-header__title">CS2 upcoming games</h1>
+        <h1 class="page-header__title">CS2 Players</h1>
         <p class="page-header__subtitle">
-          The upcoming games of the CS2 competition.
+          All the players in the CS2 competition.
         </p>
       </section>
       <table class="member-table">
         <thead>
           <tr>
-            <th class="member-table__header">Date</th>
-            <th class="member-table__header">Home Team</th>
-            <th class="member-table__header">Away Team</th>
+            <th class="member-table__header">Player</th>
+            <th class="member-table__header"></th>
           </tr>
         </thead>
-        <tbody id="scores-body"></tbody>
+        <tbody id="players-body"></tbody>
       </table>
-      <button id="load-more-btn" onclick="loadMoreGames()">Show more</button>
     </main>
     <footer>
       <p class="footer__text">
@@ -94,32 +92,31 @@
       </p>
     </footer>
     <script>
-      let offset = 0;
-      const limit = 10;
-      async function loadMoreGames() {
-        const response = await fetch(
-          `/api/games/upcoming?limit=${limit}&offset=${offset}`,
-        );
-        const games = await response.json();
+      async function loadPlayers() {
+        const res = await fetch("/api/players");
+        const players = await res.json();
 
-        let tbody = document.getElementById("scores-body");
-        tbody.innerHTML += games
+        const tbody = document.getElementById("players-body");
+
+        tbody.innerHTML = players
           .map(
-            (game) => `
-                  <tr class="member-table__row">
-                  <td class="member-table__cell">${game.date}</td>
-                  <td class="member-table__cell"><a href="team.html?id=${game.home_team_id}" target="_blank">${game.home_team}</a></td>
-                  <td class="member-table__cell"><a href="team.html?id=${game.away_team_id}" target="_blank">${game.away_team}</a></td>
-                  </tr>
-              `,
+            (player) => `
+      <tr class="member-table__row">
+        <td class="member-table__cell">
+          <a href="player.html?id=${player.id}" target="_blank">
+            ${player.first_name} ${player.last_name}
+          </a>
+        </td>
+        <td class="member-table__cell">
+          <img src="${player.photo}" alt="${player.first_name} photo" class="history-article__logo">
+        </td>
+      </tr>
+    `,
           )
           .join("");
-        offset += 10;
-        if (games.length < limit) {
-          document.getElementById("load-more-btn").style.display = "none";
-        }
       }
-      loadMoreGames();
+
+      loadPlayers();
     </script>
   </body>
 </html>
