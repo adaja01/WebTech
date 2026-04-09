@@ -20,7 +20,8 @@ app.use("/js", express.static(path.join(__dirname, "js")));
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 //session
-app.use(session({
+app.use(
+  session({
     secret: "fazewebsite_secret",
     resave: false,
     saveUninitialized: false,
@@ -121,10 +122,10 @@ app.get("/api/games/scores", (req, res) => {
 
 //upcoming 10 games sorted in ascending order.
 app.get("/api/games/upcoming", (req, res) => {
-    const limit = parseInt(req.query.limit) || 10;
-    const offset = parseInt(req.query.offset) || 0;
-    db.all(
-        `SELECT games.*,
+  const limit = parseInt(req.query.limit) || 10;
+  const offset = parseInt(req.query.offset) || 0;
+  db.all(
+    `SELECT games.*,
                 home.name as home_team,
                 away.name as away_team
          FROM games
@@ -133,16 +134,15 @@ app.get("/api/games/upcoming", (req, res) => {
          WHERE is_upcoming = 1
          ORDER BY date
          LIMIT ? OFFSET ?`,
-        [limit, offset],
-        (err, rows) => {
-            if (err) {
-                return res.status(500).json({ error: err.message });
-            }
-            else {
-                res.json(rows);
-            }
-        }
-    );
+    [limit, offset],
+    (err, rows) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      } else {
+        res.json(rows);
+      }
+    },
+  );
 });
 
 //leaderboard api call sorted on points with map diff as a tiebreaker in case of the same number of points.
@@ -279,12 +279,12 @@ app.post("/api/login", async (req, res) => {
     }
 
     req.session.user = {
-        id: user.id,
-        email: user.email,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        is_admin: user.is_admin,
-        favorite_team_id: user.favorite_team_id
+      id: user.id,
+      email: user.email,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      is_admin: user.is_admin,
+      favorite_team_id: user.favorite_team_id,
     };
     res.json({ message: "Login successful!", user: req.session.user });
   });
@@ -319,8 +319,11 @@ app.put("/api/profile", requireLogin, async (req, res) => {
   if (email && email !== req.session.user.email) {
     const existing = await new Promise((resolve, reject) => {
       db.get("SELECT * FROM users WHERE email = ?", [email], (err, row) => {
-        if (err) {reject(err);}
-        else {resolve(row);}
+        if (err) {
+          reject(err);
+        } else {
+          resolve(row);
+        }
       });
     });
     if (existing) {
@@ -415,32 +418,46 @@ app.put("/api/games/:id/score", requireAdmin, (req, res) => {
 
 //add player
 app.post("/api/players", requireAdmin, (req, res) => {
-    const { first_name, last_name, nationality, date_of_birth, role, number, photo, team_id } = req.body;
+  const {
+    first_name,
+    last_name,
+    nationality,
+    date_of_birth,
+    role,
+    number,
+    photo,
+    team_id,
+  } = req.body;
 
-    db.run(
-        "INSERT INTO players (first_name, last_name, nationality, date_of_birth, role, number, photo, team_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-        [first_name, last_name, nationality, date_of_birth, role, number, photo, team_id],
-        (err) => {
-            if (err) {
-                return res.status(500).json({ error: err.message });
-            }
-            res.json({ message: "Player added successfully!" });
-        }
-    );
+  db.run(
+    "INSERT INTO players (first_name, last_name, nationality, date_of_birth, role, number, photo, team_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+    [
+      first_name,
+      last_name,
+      nationality,
+      date_of_birth,
+      role,
+      number,
+      photo,
+      team_id,
+    ],
+    (err) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json({ message: "Player added successfully!" });
+    },
+  );
 });
 
 //remove player
 app.delete("/api/players/:id", requireAdmin, (req, res) => {
-    db.run(
-        "DELETE FROM players WHERE id=?",
-        [req.params.id],
-        (err) => {
-            if (err) {
-                return res.status(500).json({ error: err.message });
-            }
-            res.json({ message: "Player deleted successfully!" });
-        }
-    );
+  db.run("DELETE FROM players WHERE id=?", [req.params.id], (err) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json({ message: "Player deleted successfully!" });
+  });
 });
 
 //start server
