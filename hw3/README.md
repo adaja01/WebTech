@@ -1,18 +1,13 @@
-﻿# HW2 - FaZe clan, Dynamic
+﻿# HW3 - FaZe clan, Node
 
-Website for the second assignment of INFOB2WT, showcasing information about the FaZe clan. 
-Continuation on assignment 1 with JavaScript.
+Website for the third assignment of INFOB2WT, showcasing information about the FaZe clan.
 
 ## Structure
 - `assets/` - directory for images and other media assets
 - `css/` - directory for CSS files
 - `data/` - directory for JSON data
-- `js/` - directory for JavaScript files
-- `index.html` - main page for the website
-- `history.html` - page detailing the history
-- `members.html` - page listing the members and teams
-- `achievements.html` - page highlighting the achievements and milestones
-- `contact.html` - page with contact information and social media links
+- `html/` - directory for HTML files
+- `js/` - directory for JavaScript file
 
 ## Sources
 ### Team
@@ -32,6 +27,5 @@ Continuation on assignment 1 with JavaScript.
 - And the lectures of course!
 
 ## Running
-- Open `index.html` in a web browser to view the website
-- Or visit `hw2.web-uu.pages.dev` to see the deployed version on Cloudflare Pages 
-  - Note that this site is blocked behind Cloudflare Access and thus only available for team members
+- Run `npm install` to install dependencies
+- Run `npm start` to start the server

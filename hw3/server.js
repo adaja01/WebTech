@@ -4,20 +4,21 @@ const express = require("express");
 const session = require("express-session");
 const morgan = require("morgan");
 const path = require("path");
-const db = require("./db.js")
+const db = require("./db.js");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const PORT = 3000;
 
 //middleware
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
 
 //session
 app.use(session({
-    secret: 'fazewebsite_secret',
+    secret: "fazewebsite_secret",
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }
@@ -38,8 +39,8 @@ function requireLogin(req, res, next) {
 }
 
 //routes
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 //team route 
@@ -95,7 +96,7 @@ app.get("/api/players/:id", (req, res) => {
     });
 });
 
-//last 10 scores sorted on how recent they were.
+//the last 10 scores sorted on how recent they were.
 app.get("/api/games/scores", (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     const offset = parseInt(req.query.offset) || 0;
@@ -126,12 +127,14 @@ app.get("/api/games/upcoming", (req, res) => {
     const offset = parseInt(req.query.offset) || 0;
     db.all(
         `SELECT games.*,
-        home.name as home_team, away.name as away_team
-        FROM games
-        JOIN teams home ON games.home_team_id = home.id
-        JOIN teams away ON games.away_team_id = away.id
-        WHERE is_upcoming = 1
-        ORDER BY date ASC LIMIT ? OFFSET ?`,
+                home.name as home_team,
+                away.name as away_team
+         FROM games
+                  JOIN teams home ON games.home_team_id = home.id
+                  JOIN teams away ON games.away_team_id = away.id
+         WHERE is_upcoming = 1
+         ORDER BY date
+         LIMIT ? OFFSET ?`,
         [limit, offset],
         (err, rows) => {
             if (err) {
@@ -144,7 +147,7 @@ app.get("/api/games/upcoming", (req, res) => {
     );
 });
 
-//leaderboard api call sorted on points with map diff as tie breaker in case of same amount of points.
+//leaderboard api call sorted on points with map diff as a tiebreaker in case of the same number of points.
 app.get("/api/leaderboard", (req, res) => {
     db.all("SELECT * FROM teams", [], (err, teams) => {
         if (err) {
@@ -221,16 +224,16 @@ app.post("/api/register", async (req, res) => {
             return res.status(400).json({ error: "Email already in use." });
         }
 
-        const hashedpw = await bcrypt.hash(password, 10);
+        const hashed_pass = await bcrypt.hash(password, 10);
 
         db.run(
             "INSERT INTO users (first_name, last_name, email, password, favorite_team_id, is_admin) VALUES (?, ?, ?, ?, ?, 0)",
-            [first_name, last_name, email, hashedpw, favorite_team_id],
+            [first_name, last_name, email, hashed_pass, favorite_team_id],
             (err) => {
                 if (err) {
                     return res.status(500).json({ error: err.message });
                 }
-                res.json({ message: "Registration succesful!" });
+                res.json({ message: "Registration successful!" });
             }
         );
     });
@@ -263,14 +266,14 @@ app.post("/api/login", async (req, res) => {
             is_admin: user.is_admin,
             favorite_team_id: user.favorite_team_id
         };
-        res.json({ message: "Login succesful!", user: req.session.user });
+        res.json({ message: "Login successful!", user: req.session.user });
     });
 });
 
 //logout api call
 app.post("/api/logout", (req, res) => {
     req.session.destroy();
-    res.json({ message: "Logged out succesfully!" });
+    res.json({ message: "Logged out successfully!" });
 });
 
 //Get current logged in user
@@ -291,12 +294,12 @@ app.put("/api/profile", requireLogin, async (req, res) => {
     const updatedLastName = last_name || req.session.user.last_name;
     const updatedTeam = favorite_team_id || req.session.user.favorite_team_id;
 
-    //check if new email is not in use
+    //check if a new email is not in use
     if (email && email !== req.session.user.email) {
         const existing = await new Promise((resolve, reject) => {
             db.get("SELECT * FROM users WHERE email = ?", [email], (err, row) => {
-                if (err) reject(err);
-                else resolve(row);
+                if (err) {reject(err);}
+                else {resolve(row);}
             });
         });
         if (existing) {
@@ -314,8 +317,8 @@ app.put("/api/profile", requireLogin, async (req, res) => {
         //get current hashed pw
         const user = await new Promise((resolve, reject) => {
             db.get("SELECT * FROM users WHERE id = ?", [req.session.user.id], (err, row) => {
-                if (err) reject(err);
-                else resolve(row);
+                if (err) {reject(err);}
+                else {resolve(row);}
             });
         });
         const pwMatch = await bcrypt.compare(current_pw, user.password);
@@ -325,7 +328,7 @@ app.put("/api/profile", requireLogin, async (req, res) => {
         updatedPassword = await bcrypt.hash(new_pw, 10);
     }
 
-    //update user, depending on if password has been changed
+    //update user, depending on if the password has been changed
     if (updatedPassword) {
         db.run(
             "UPDATE users SET first_name=?, last_name=?, email=?, password=?, favorite_team_id=? WHERE id=?",
@@ -367,7 +370,7 @@ app.put("/api/games/:id/score", requireAdmin, (req, res) => {
             if (err) {
                 return res.status(500).json({ error: err.message });
             }
-            res.json({ message: "Score updated succesfully!" });
+            res.json({ message: "Score updated successfully!" });
         }
     );
 });
@@ -382,7 +385,7 @@ app.post("/api/players", requireAdmin, (req, res) => {
             if (err) {
                 return res.status(500).json({ error: err.message });
             }
-            res.json({ message: "Player added succesfully!" });
+            res.json({ message: "Player added successfully!" });
         }
     );
 });
@@ -396,7 +399,7 @@ app.delete("/api/players/:id", requireAdmin, (req, res) => {
             if (err) {
                 return res.status(500).json({ error: err.message });
             }
-            res.json({ message: "Player deleted succesfully!" });
+            res.json({ message: "Player deleted successfully!" });
         }
     );
 });
