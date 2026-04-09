@@ -31,7 +31,7 @@ Website for the third assignment of INFOB2WT, showcasing information about the F
   - `players` - contains information about the players
   - `games` - contains information about the games
   - `users` - contains information about the users
-  - 
+
 ## Login
 ### Users
 - `admin` - password: `Shaded6-Unaudited1-Bribe8-Yarn2-Morale5`
