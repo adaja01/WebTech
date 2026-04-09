@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="The members of FaZe Clan, including both content and esports members."
+      content="The previous scores and upcoming games of Faze Clan."
     />
-    <title>FaZe Clan | Members</title>
+    <title>FaZe Clan | Team</title>
 
     <!-- favicon -->
     <link
@@ -43,57 +43,35 @@
   </head>
   <body>
     <header>
-      <nav class="nav">
+      <nav class="team-nav nav">
         <ul class="nav__list">
           <li class="nav__item">
-            <a href="index.html" class="nav__link">Home</a>
+            <a id="info-link" class="nav__link">Info</a>
           </li>
           <li class="nav__item">
-            <a href="history.html" class="nav__link">History</a>
+            <a id="players-link" class="nav__link nav__link--active">Players</a>
           </li>
           <li class="nav__item">
-            <a href="scores.html" class="nav__link">Scores</a>
-          </li>
-          <li class="nav__item">
-            <a href="upcoming.html" class="nav__link">Upcoming</a>
-          </li>
-          <li class="nav__item">
-            <a href="leaderboard.html" class="nav__link">Leaderboard</a>
-          </li>
-          <li class="nav__item">
-            <a
-                    href="members.html"
-                    aria-current="page"
-                    class="nav__link nav__link--active"
-            >Members</a>
-          </li>
-          <li class="nav__item">
-            <a href="achievements.html" class="nav__link">Achievements</a>
-          </li>
-          <li class="nav__item">
-            <a href="contact.html" class="nav__link">Contact</a>
+            <a id="games-link" class="nav__link">Games</a>
           </li>
         </ul>
       </nav>
     </header>
     <main>
       <section class="page-header">
-        <h1 class="page-header__title">FaZe Members</h1>
-        <p class="page-header__subtitle">
-          The members of FaZe Clan, including both content and esports members
-        </p>
+        <h1 class="page-header__title">Players</h1>
+        <table class="member-table">
+          <thead>
+            <tr>
+              <th class="member-table__header">Name</th>
+              <th class="member-table__header">Role</th>
+            </tr>
+          </thead>
+          <tbody id="players-body"></tbody>
+        </table>
       </section>
-      <section id="upload-section" class="upload-section">
-        <h2>Select a JSON file to add to this page:</h2>
-        <label for="members-input">Upload a file</label>
-        <input
-          type="file"
-          id="members-input"
-          class="members-input"
-          accept=".json"
-        />
-      </section>
-      <div id="members-display"></div>
+
+      <script src="team.js"></script>
     </main>
     <footer>
       <p class="footer__text">
@@ -102,5 +80,36 @@
       </p>
     </footer>
     <script type="module" src="js/main.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const teamId = params.get("id");
+
+      document.getElementById("info-link").href = `team.html?id=${teamId}`;
+      document.getElementById("players-link").href =
+        `team-players.html?id=${teamId}`;
+      document.getElementById("games-link").href =
+        `team-games.html?id=${teamId}`;
+
+      fetch(`/api/teams/${teamId}/players`)
+        .then((res) => res.json())
+        .then((players) => {
+          const tbody = document.getElementById("players-body");
+
+          tbody.innerHTML = players
+            .map(
+              (p) => `
+      <tr class="member-table__row">
+        <td class="member-table__cell">
+          <a href="player.html?id=${p.id}" target="_blank">
+            ${p.first_name} ${p.last_name}
+          </a>
+        </td>
+        <td class="member-table__cell">${p.role}</td>
+      </tr>
+    `,
+            )
+            .join("");
+        });
+    </script>
   </body>
 </html>

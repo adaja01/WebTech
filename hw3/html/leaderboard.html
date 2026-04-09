@@ -13,33 +13,30 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="assets/favicon/apple-touch-icon.png"
+      href="../assets/favicon/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="assets/favicon/favicon-32x32.png"
+      href="../assets/favicon/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="assets/favicon/favicon-16x16.png"
+      href="../assets/favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
 
     <!-- styles -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Cormorant+Garamond:ital,wght@1,300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
       rel="stylesheet"
     />
-
-    <!-- scripts -->
-    <script src="js/appearance-menus.js" defer></script>
   </head>
   <body>
     <header>
@@ -59,10 +56,10 @@
           </li>
           <li class="nav__item">
             <a
-                    href="leaderboard.html"
-                    aria-current="page"
-                    class="nav__link nav__link--active"
-            >Leaderboard</a>
+              href="leaderboard.html"
+              aria-current="page"
+              class="nav__link nav__link--active"
+              >Leaderboard</a>
           </li>
           <li class="nav__item">
             <a href="members.html" class="nav__link">Members</a>
@@ -104,21 +101,17 @@
         group 41
       </p>
     </footer>
-    <script type="module" src="js/main.js"></script>
     <script>
-      // function to load games and append to the list
       async function loadLeaderboard() {
         const response = await fetch(`/api/leaderboard`);
         const games = await response.json();
-
-        // append each game to the list
         let tbody = document.getElementById("scores-body");
         tbody.innerHTML = games
           .map(
             (game) => `
                   <tr class="member-table__row">
                   <td class="member-table__cell"><img class="history-article__logo" src=${game.logo} alt=${game.name}></td>
-                  <td class="member-table__cell">${game.name}</td>
+                  <td class="member-table__cell"><a href="team.html?id=${game.id}" target="_blank">${game.name}</a></td>
                   <td class="member-table__cell">${game.points}</td>
                   <td class="member-table__cell">${game.total}</td>
                   <td class="member-table__cell">${game.wins}</td>

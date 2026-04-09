@@ -13,33 +13,30 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="assets/favicon/apple-touch-icon.png"
+      href="../assets/favicon/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="assets/favicon/favicon-32x32.png"
+      href="../assets/favicon/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="assets/favicon/favicon-16x16.png"
+      href="../assets/favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
 
     <!-- styles -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Cormorant+Garamond:ital,wght@1,300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
       rel="stylesheet"
     />
-
-    <!-- scripts -->
-    <script src="js/appearance-menus.js" defer></script>
   </head>
   <body>
     <header>
@@ -56,10 +53,10 @@
           </li>
           <li class="nav__item">
             <a
-                    href="upcoming.html"
-                    aria-current="page"
-                    class="nav__link nav__link--active"
-            >Upcoming</a>
+              href="upcoming.html"
+              aria-current="page"
+              class="nav__link nav__link--active"
+              >Upcoming</a>
           </li>
           <li class="nav__item">
             <a href="leaderboard.html" class="nav__link">Leaderboard</a>
@@ -101,41 +98,32 @@
         group 41
       </p>
     </footer>
-    <script type="module" src="js/main.js"></script>
     <script>
       let offset = 0;
       const limit = 10;
-
-      // function to load games and append to the list
       async function loadMoreGames() {
         const response = await fetch(
           `/api/games/upcoming?limit=${limit}&offset=${offset}`,
         );
         const games = await response.json();
 
-        // append each game to the list
         let tbody = document.getElementById("scores-body");
         tbody.innerHTML += games
           .map(
             (game) => `
                   <tr class="member-table__row">
                   <td class="member-table__cell">${game.date}</td>
-                  <td class="member-table__cell">${game.home_team}</td>
-                  <td class="member-table__cell">${game.away_team}</td>
+                  <td class="member-table__cell"><a href="team.html?id=${game.home_team_id}" target="_blank">${game.home_team}</a></td>
+                  <td class="member-table__cell"><a href="team.html?id=${game.away_team_id}" target="_blank">${game.away_team}</a></td>
                   </tr>
               `,
           )
           .join("");
-        // increase offset for next load
         offset += 10;
-
-        // hide "load more" button if less than 10 games returned
         if (games.length < limit) {
           document.getElementById("load-more-btn").style.display = "none";
         }
       }
-
-      // load first 10 on page load
       loadMoreGames();
     </script>
   </body>

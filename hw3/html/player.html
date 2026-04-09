@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The previous scores and upcoming games of Faze Clan."
+    />
+    <title>FaZe Clan | Team</title>
+
+    <!-- favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Cormorant+Garamond:ital,wght@1,300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <section class="page-header">
+        <h1 id="player-name"></h1>
+      </section>
+
+      <div class="player-container">
+        <img id="player-photo" alt="Player photo" src="../assets/images/players/anonymous.png"/>
+
+        <table class="member-table">
+          <tbody>
+            <tr>
+              <td class="member-table__cell">First Name</td>
+              <td class="member-table__cell" id="first-name"></td>
+            </tr>
+            <tr>
+              <td class="member-table__cell">Last Name</td>
+              <td class="member-table__cell" id="last-name"></td>
+            </tr>
+            <tr>
+              <td class="member-table__cell">Date of Birth</td>
+              <td class="member-table__cell" id="dob"></td>
+            </tr>
+            <tr>
+              <td class="member-table__cell">Role</td>
+              <td class="member-table__cell" id="role"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <footer>
+      <p class="footer__text">
+        Deliverable for the INFOB2WT course at Utrecht University - Written by
+        group 41
+      </p>
+    </footer>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const playerId = params.get("id");
+
+      fetch(`/api/players/${playerId}`)
+        .then((res) => res.json())
+        .then((player) => {
+          document.getElementById("player-name").textContent =
+            `${player.first_name} ${player.last_name}`;
+
+          document.getElementById("first-name").textContent = player.first_name;
+          document.getElementById("last-name").textContent = player.last_name;
+          document.getElementById("dob").textContent = player.date_of_birth;
+          document.getElementById("role").textContent = player.role;
+
+          document.getElementById("player-photo").src = player.photo;
+        });
+    </script>
+  </body>
+</html>
