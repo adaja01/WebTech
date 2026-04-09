@@ -168,15 +168,6 @@ footer {
 }
 
 /* index */
-.body--index {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    linear-gradient(rgba(255, 255, 0, 0.2), rgba(255, 255, 0, 0.2)),
-    /* viva los pollos hermanos! */ url("../assets/images/index-bg.png")
-      no-repeat fixed center;
-  background-size: cover;
-}
-
 .main--index {
   display: flex;
   flex-direction: column;
