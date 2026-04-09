@@ -1,18 +1,42 @@
-﻿# HW2 - FaZe clan, Dynamic
+﻿# HW3 - FaZe clan, Node
 
-Website for the second assignment of INFOB2WT, showcasing information about the FaZe clan. 
-Continuation on assignment 1 with JavaScript.
+Website for the third assignment of INFOB2WT, showcasing information about the FaZe clan.
 
 ## Structure
 - `assets/` - directory for images and other media assets
 - `css/` - directory for CSS files
-- `data/` - directory for JSON data
+- `data/` - directory for data files
+    - `database.db` - SQLite database file containing all the data for the website
+    - `schema.sql` - SQL schema for the database
+- `html/` - directory for HTML files
+    - `achievements.html` - achievements page
+    - `contact.html` - contact page
+    - `history.html` - history page
+    - `index.html` - home page
+    - `leaderboard.html` - leaderboard page
+    - `members.html` - members page
+    - `scores.html` - scores of previous tournaments page
+    - `upcoming.html` - upcoming tournaments page
 - `js/` - directory for JavaScript files
-- `index.html` - main page for the website
-- `history.html` - page detailing the history
-- `members.html` - page listing the members and teams
-- `achievements.html` - page highlighting the achievements and milestones
-- `contact.html` - page with contact information and social media links
+- `db.js` - database connection
+- `package.json` - npm package manifest
+- `package-lock.json` - pinned dependencies
+- `readme.txt` - this file
+- `server.js` - entry point for the server, handles routing and serving of files
+
+## Database
+- The SQL definition can be found in `data/schema.sql`.
+- The database has the following tables:
+  - `teams` - contains information about the teams
+  - `players` - contains information about the players
+  - `games` - contains information about the games
+  - `users` - contains information about the users
+
+## Login
+### Users
+- `admin` - password: `Shaded6-Unaudited1-Bribe8-Yarn2-Morale5`
+- `djgreenbean` - password: `greenBe@nnumber12`
+- `lucybedroque` - password: `loshtrushi444`
 
 ## Sources
 ### Team
@@ -31,7 +55,15 @@ Continuation on assignment 1 with JavaScript.
 - [CSS](https://www.w3schools.com/css/)
 - And the lectures of course!
 
-## Running
-- Open `index.html` in a web browser to view the website
-- Or visit `hw2.web-uu.pages.dev` to see the deployed version on Cloudflare Pages 
-  - Note that this site is blocked behind Cloudflare Access and thus only available for team members
+## Deployment
+### Production
+- The website is available at http://webtech.science.uu.nl/group41
+### Development
+- Run `npm install` to install dependencies
+- Run `npm start` to start the server
+
+## Credits
+Written by Group 41, consisting of:
+- Arjan Polhaar [4926501]
+- Sander Bertram [0288705]
+- Lukas Mouthaan [7681534]

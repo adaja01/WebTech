@@ -5,6 +5,7 @@ const session = require("express-session");
 const morgan = require("morgan");
 const path = require("path");
 const db = require("./db.js");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const PORT = 3000;
@@ -13,11 +14,13 @@ const PORT = 3000;
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, "html")));
+app.use("/css", express.static(path.join(__dirname, "css")));
+app.use("/js", express.static(path.join(__dirname, "js")));
+app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 //session
-app.use(
-  session({
+app.use(session({
     secret: "fazewebsite_secret",
     resave: false,
     saveUninitialized: false,
@@ -41,7 +44,7 @@ function requireLogin(req, res, next) {
 
 //routes
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "html", "index.html"));
 });
 
 //team route
@@ -92,7 +95,7 @@ app.get("/api/players/:id", (req, res) => {
   });
 });
 
-//last 10 scores sorted on how recent they were.
+//the last 10 scores sorted on how recent they were.
 app.get("/api/games/scores", (req, res) => {
   const limit = parseInt(req.query.limit) || 10;
   const offset = parseInt(req.query.offset) || 0;
@@ -118,28 +121,31 @@ app.get("/api/games/scores", (req, res) => {
 
 //upcoming 10 games sorted in ascending order.
 app.get("/api/games/upcoming", (req, res) => {
-  const limit = parseInt(req.query.limit) || 10;
-  const offset = parseInt(req.query.offset) || 0;
-  db.all(
-    `SELECT games.*,
-        home.name as home_team, away.name as away_team
-        FROM games
-        JOIN teams home ON games.home_team_id = home.id
-        JOIN teams away ON games.away_team_id = away.id
-        WHERE is_upcoming = 1
-        ORDER BY date ASC LIMIT ? OFFSET ?`,
-    [limit, offset],
-    (err, rows) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      } else {
-        res.json(rows);
-      }
-    },
-  );
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = parseInt(req.query.offset) || 0;
+    db.all(
+        `SELECT games.*,
+                home.name as home_team,
+                away.name as away_team
+         FROM games
+                  JOIN teams home ON games.home_team_id = home.id
+                  JOIN teams away ON games.away_team_id = away.id
+         WHERE is_upcoming = 1
+         ORDER BY date
+         LIMIT ? OFFSET ?`,
+        [limit, offset],
+        (err, rows) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            else {
+                res.json(rows);
+            }
+        }
+    );
 });
 
-//leaderboard api call sorted on points with map diff as tie breaker in case of same amount of points.
+//leaderboard api call sorted on points with map diff as a tiebreaker in case of the same number of points.
 app.get("/api/leaderboard", (req, res) => {
   db.all("SELECT * FROM teams", [], (err, teams) => {
     if (err) {
@@ -234,20 +240,21 @@ app.post("/api/register", async (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
+
     if (row) {
       return res.status(400).json({ error: "Email already in use." });
     }
 
-    const hashedpw = await bcrypt.hash(password, 10);
+    const hashedPass = await bcrypt.hash(password, 10);
 
     db.run(
       "INSERT INTO users (first_name, last_name, email, password, favorite_team_id, is_admin) VALUES (?, ?, ?, ?, ?, 0)",
-      [first_name, last_name, email, hashedpw, favorite_team_id],
-      (err) => {
-        if (err) {
-          return res.status(500).json({ error: err.message });
+      [first_name, last_name, email, hashedPass, favorite_team_id],
+      (insertErr) => {
+        if (insertErr) {
+          return res.status(500).json({ error: insertErr.message });
         }
-        res.json({ message: "Registration succesful!" });
+        res.json({ message: "Registration successful!" });
       },
     );
   });
@@ -272,21 +279,21 @@ app.post("/api/login", async (req, res) => {
     }
 
     req.session.user = {
-      id: user.id,
-      email: user.email,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      is_admin: user.is_admin,
-      favorite_team_id: user.favorite_team_id,
+        id: user.id,
+        email: user.email,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        is_admin: user.is_admin,
+        favorite_team_id: user.favorite_team_id
     };
-    res.json({ message: "Login succesful!", user: req.session.user });
+    res.json({ message: "Login successful!", user: req.session.user });
   });
 });
 
 //logout api call
 app.post("/api/logout", (req, res) => {
   req.session.destroy();
-  res.json({ message: "Logged out succesfully!" });
+  res.json({ message: "Logged out successfully!" });
 });
 
 //Get current logged in user
@@ -308,12 +315,12 @@ app.put("/api/profile", requireLogin, async (req, res) => {
   const updatedLastName = last_name || req.session.user.last_name;
   const updatedTeam = favorite_team_id || req.session.user.favorite_team_id;
 
-  //check if new email is not in use
+  //check if a new email is not in use
   if (email && email !== req.session.user.email) {
     const existing = await new Promise((resolve, reject) => {
       db.get("SELECT * FROM users WHERE email = ?", [email], (err, row) => {
-        if (err) reject(err);
-        else resolve(row);
+        if (err) {reject(err);}
+        else {resolve(row);}
       });
     });
     if (existing) {
@@ -322,81 +329,70 @@ app.put("/api/profile", requireLogin, async (req, res) => {
   }
   const updatedEmail = email || req.session.user.email;
 
-  //handle password change if a new password was entered
   let updatedPassword = null;
+
   if (new_pw) {
     if (!current_pw) {
       return res.status(400).json({ error: "Current password required!" });
     }
-    //get current hashed pw
+
     const user = await new Promise((resolve, reject) => {
       db.get(
         "SELECT * FROM users WHERE id = ?",
         [req.session.user.id],
         (err, row) => {
-          if (err) reject(err);
-          else resolve(row);
+          if (err) {
+            reject(err);
+          } else {
+            resolve(row);
+          }
         },
       );
     });
+
     const pwMatch = await bcrypt.compare(current_pw, user.password);
     if (!pwMatch) {
       return res.status(401).json({ error: "Current password incorrect!" });
     }
+
     updatedPassword = await bcrypt.hash(new_pw, 10);
   }
 
-  //update user, depending on if password has been changed
-  if (updatedPassword) {
-    db.run(
-      "UPDATE users SET first_name=?, last_name=?, email=?, password=?, favorite_team_id=? WHERE id=?",
-      [
+  const updateQuery = updatedPassword
+    ? "UPDATE users SET first_name=?, last_name=?, email=?, password=?, favorite_team_id=? WHERE id=?"
+    : "UPDATE users SET first_name=?, last_name=?, email=?, favorite_team_id=? WHERE id=?";
+  const updateParams = updatedPassword
+    ? [
         updatedFirstName,
         updatedLastName,
         updatedEmail,
         updatedPassword,
         updatedTeam,
         req.session.user.id,
-      ],
-      (err) => {
-        if (err) {
-          return res.status(500).json({ error: err.message });
-        }
-        req.session.user = {
-          ...req.session.user,
-          first_name: updatedFirstName,
-          last_name: updatedLastName,
-          email: updatedEmail,
-          favorite_team_id: updatedTeam,
-        };
-        res.json({ message: "Profile updated!" });
-      },
-    );
-  } else {
-    db.run(
-      "UPDATE users SET first_name=?, last_name=?, email=?, favorite_team_id=? WHERE id=?",
-      [
+      ]
+    : [
         updatedFirstName,
         updatedLastName,
         updatedEmail,
         updatedTeam,
         req.session.user.id,
-      ],
-      (err) => {
-        if (err) {
-          return res.status(500).json({ error: err.message });
-        }
-        req.session.user = {
-          ...req.session.user,
-          first_name: updatedFirstName,
-          last_name: updatedLastName,
-          email: updatedEmail,
-          favorite_team_id: updatedTeam,
-        };
-        res.json({ message: "Profile updated!" });
-      },
-    );
-  }
+      ];
+
+  db.run(updateQuery, updateParams, (err) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    req.session.user = {
+      ...req.session.user,
+      first_name: updatedFirstName,
+      last_name: updatedLastName,
+      email: updatedEmail,
+      favorite_team_id: updatedTeam,
+    };
+
+    res.json({ message: "Profile updated!" });
+  });
 });
 
 //Admin routes
@@ -412,52 +408,39 @@ app.put("/api/games/:id/score", requireAdmin, (req, res) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
-      res.json({ message: "Score updated succesfully!" });
+      res.json({ message: "Score updated successfully!" });
     },
   );
 });
 
 //add player
 app.post("/api/players", requireAdmin, (req, res) => {
-  const {
-    first_name,
-    last_name,
-    nationality,
-    date_of_birth,
-    role,
-    number,
-    photo,
-    team_id,
-  } = req.body;
-  db.run(
-    "INSERT INTO players (first_name, last_name, nationality, date_of_birth, role, number, photo, team_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-    [
-      first_name,
-      last_name,
-      nationality,
-      date_of_birth,
-      role,
-      number,
-      photo,
-      team_id,
-    ],
-    (err) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      res.json({ message: "Player added succesfully!" });
-    },
-  );
+    const { first_name, last_name, nationality, date_of_birth, role, number, photo, team_id } = req.body;
+
+    db.run(
+        "INSERT INTO players (first_name, last_name, nationality, date_of_birth, role, number, photo, team_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        [first_name, last_name, nationality, date_of_birth, role, number, photo, team_id],
+        (err) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json({ message: "Player added successfully!" });
+        }
+    );
 });
 
 //remove player
 app.delete("/api/players/:id", requireAdmin, (req, res) => {
-  db.run("DELETE FROM players WHERE id=?", [req.params.id], (err) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    res.json({ message: "Player deleted succesfully!" });
-  });
+    db.run(
+        "DELETE FROM players WHERE id=?",
+        [req.params.id],
+        (err) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json({ message: "Player deleted successfully!" });
+        }
+    );
 });
 
 //start server

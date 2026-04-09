@@ -10,7 +10,10 @@
     "validate:hw1:css": "tsx scripts/validate.ts hw1 --css-only",
     "validate:hw2": "tsx scripts/validate.ts hw2",
     "validate:hw2:html": "tsx scripts/validate.ts hw2 --html-only",
-    "validate:hw2:css": "tsx scripts/validate.ts hw2 --css-only"
+    "validate:hw2:css": "tsx scripts/validate.ts hw2 --css-only",
+    "validate:hw3": "tsx scripts/validate.ts hw3",
+    "validate:hw3:html": "tsx scripts/validate.ts hw3 --html-only",
+    "validate:hw3:css": "tsx scripts/validate.ts hw3 --css-only"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
