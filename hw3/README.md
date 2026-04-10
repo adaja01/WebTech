@@ -28,7 +28,7 @@ Website for the third assignment of INFOB2WT, showcasing information about the F
 
 ## Login
 ### Users
-- `admin@uu.nl` - password: `faze123`
+- `admin@uu.nl` - password: `admin123`
 - `l.a.mouthaan@students.uu.nl` - password: `faze123`
 - `a.g.polhaar@students.uu.nl` - password: `faze123`
 - `s.l.bertram@students.uu.nl` - password: `faze123`
