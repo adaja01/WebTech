@@ -10,14 +10,12 @@ const bcrypt = require("bcrypt");
 const app = express();
 const PORT = 3000;
 
+const baseRouter = express.Router();
+
 //middleware
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "html")));
-app.use("/css", express.static(path.join(__dirname, "css")));
-app.use("/js", express.static(path.join(__dirname, "js")));
-app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 //session
 app.use(
@@ -28,6 +26,11 @@ app.use(
     cookie: { secure: false },
   }),
 );
+
+baseRouter.use(express.static(path.join(__dirname, "html")));
+baseRouter.use("/css", express.static(path.join(__dirname, "css")));
+baseRouter.use("/js", express.static(path.join(__dirname, "js")));
+baseRouter.use("/assets", express.static(path.join(__dirname, "assets")));
 
 function requireAdmin(req, res, next) {
   if (!req.session.user || !req.session.user.is_admin) {
@@ -44,12 +47,12 @@ function requireLogin(req, res, next) {
 }
 
 //routes
-app.get("/", (req, res) => {
+baseRouter.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "html", "index.html"));
 });
 
 //team route
-app.get("/api/teams", (req, res) => {
+baseRouter.get("/api/teams", (req, res) => {
   db.all("SELECT * FROM teams", [], (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -60,7 +63,7 @@ app.get("/api/teams", (req, res) => {
 });
 
 //single team
-app.get("/api/teams/:id", (req, res) => {
+baseRouter.get("/api/teams/:id", (req, res) => {
   db.get("SELECT * FROM teams WHERE id = ?", [req.params.id], (err, row) => {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -73,7 +76,7 @@ app.get("/api/teams/:id", (req, res) => {
 });
 
 //all players
-app.get("/api/players", (req, res) => {
+baseRouter.get("/api/players", (req, res) => {
   db.all("SELECT * FROM players", [], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -84,7 +87,7 @@ app.get("/api/players", (req, res) => {
 });
 
 //single player
-app.get("/api/players/:id", (req, res) => {
+baseRouter.get("/api/players/:id", (req, res) => {
   db.get("SELECT * FROM players WHERE id = ?", [req.params.id], (err, row) => {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -97,7 +100,7 @@ app.get("/api/players/:id", (req, res) => {
 });
 
 //the last 10 scores sorted on how recent they were.
-app.get("/api/games/scores", (req, res) => {
+baseRouter.get("/api/games/scores", (req, res) => {
   const limit = parseInt(req.query.limit) || 10;
   const offset = parseInt(req.query.offset) || 0;
 
@@ -121,7 +124,7 @@ app.get("/api/games/scores", (req, res) => {
 });
 
 //upcoming 10 games sorted in ascending order.
-app.get("/api/games/upcoming", (req, res) => {
+baseRouter.get("/api/games/upcoming", (req, res) => {
   const limit = parseInt(req.query.limit) || 10;
   const offset = parseInt(req.query.offset) || 0;
   db.all(
@@ -146,7 +149,7 @@ app.get("/api/games/upcoming", (req, res) => {
 });
 
 //leaderboard api call sorted on points with map diff as a tiebreaker in case of the same number of points.
-app.get("/api/leaderboard", (req, res) => {
+baseRouter.get("/api/leaderboard", (req, res) => {
   db.all("SELECT * FROM teams", [], (err, teams) => {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -197,7 +200,7 @@ app.get("/api/leaderboard", (req, res) => {
 });
 
 //players from a specific team
-app.get("/api/teams/:id/players", (req, res) => {
+baseRouter.get("/api/teams/:id/players", (req, res) => {
   db.all(
     "SELECT * FROM players WHERE team_id = ?",
     [req.params.id],
@@ -211,7 +214,7 @@ app.get("/api/teams/:id/players", (req, res) => {
 });
 
 //games from a specific team
-app.get("/api/teams/:id/games", (req, res) => {
+baseRouter.get("/api/teams/:id/games", (req, res) => {
   db.all(
     `SELECT games.*,
    home.name AS home_team,
@@ -233,7 +236,7 @@ app.get("/api/teams/:id/games", (req, res) => {
 // API auth routes
 
 //register api call
-app.post("/api/register", async (req, res) => {
+baseRouter.post("/api/register", async (req, res) => {
   const { first_name, last_name, email, password, favorite_team_id } = req.body;
 
   db.get("SELECT * FROM users WHERE email = ?", [email], async (err, row) => {
@@ -261,7 +264,7 @@ app.post("/api/register", async (req, res) => {
 });
 
 // login api call
-app.post("/api/login", async (req, res) => {
+baseRouter.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
   db.get("SELECT * FROM users WHERE email = ?", [email], async (err, user) => {
@@ -291,13 +294,13 @@ app.post("/api/login", async (req, res) => {
 });
 
 //logout api call
-app.post("/api/logout", (req, res) => {
+baseRouter.post("/api/logout", (req, res) => {
   req.session.destroy();
   res.json({ message: "Logged out successfully!" });
 });
 
 //Get current logged in user
-app.get("/api/me", (req, res) => {
+baseRouter.get("/api/me", (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: "Not logged in" });
   }
@@ -307,7 +310,7 @@ app.get("/api/me", (req, res) => {
 //Profile api routes
 
 //Update profile
-app.put("/api/profile", requireLogin, async (req, res) => {
+baseRouter.put("/api/profile", requireLogin, async (req, res) => {
   const { first_name, last_name, email, current_pw, new_pw, favorite_team_id } =
     req.body;
 
@@ -401,7 +404,7 @@ app.put("/api/profile", requireLogin, async (req, res) => {
 //Admin routes
 
 //update score
-app.put("/api/games/:id/score", requireAdmin, (req, res) => {
+baseRouter.put("/api/games/:id/score", requireAdmin, (req, res) => {
   const { home_score, away_score } = req.body;
 
   db.run(
@@ -417,7 +420,7 @@ app.put("/api/games/:id/score", requireAdmin, (req, res) => {
 });
 
 //add player
-app.post("/api/players", requireAdmin, (req, res) => {
+baseRouter.post("/api/players", requireAdmin, (req, res) => {
   const {
     first_name,
     last_name,
@@ -451,7 +454,7 @@ app.post("/api/players", requireAdmin, (req, res) => {
 });
 
 //remove player
-app.delete("/api/players/:id", requireAdmin, (req, res) => {
+baseRouter.delete("/api/players/:id", requireAdmin, (req, res) => {
   db.run("DELETE FROM players WHERE id=?", [req.params.id], (err) => {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -461,7 +464,7 @@ app.delete("/api/players/:id", requireAdmin, (req, res) => {
 });
 
 //update player
-app.put("/api/players/:id", requireAdmin, (req, res) => {
+baseRouter.put("/api/players/:id", requireAdmin, (req, res) => {
   const {
     first_name,
     last_name,
@@ -496,7 +499,7 @@ app.put("/api/players/:id", requireAdmin, (req, res) => {
 });
 
 //get all upcoming games for admin
-app.get("/api/games/admin/upcoming", requireAdmin, (req, res) => {
+baseRouter.get("/api/games/admin/upcoming", requireAdmin, (req, res) => {
   db.all(
     `SELECT games.*,
          home.name as home_team,
@@ -517,7 +520,7 @@ app.get("/api/games/admin/upcoming", requireAdmin, (req, res) => {
 });
 
 //get all past games for admin
-app.get("/api/games/admin/scores", requireAdmin, (req, res) => {
+baseRouter.get("/api/games/admin/scores", requireAdmin, (req, res) => {
   db.all(
     `SELECT games.*,
          home.name as home_team,
@@ -536,6 +539,8 @@ app.get("/api/games/admin/scores", requireAdmin, (req, res) => {
     },
   );
 });
+
+app.use("/group41", baseRouter);
 
 //start server
 app.listen(PORT, () => {
