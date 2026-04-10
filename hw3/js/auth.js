@@ -133,7 +133,7 @@ async function initializeHeader() {
 
   if (user) {
      // Logged-in user UI
-     const adminLink = user.is_admin ? `<a href="admin.html" class="auth-section__link">Admin</a>` : "";
+     const adminLink = user.is_admin ? "<a href=\"admin.html\" class=\"auth-section__link\">Admin</a>" : "";
      authSection.innerHTML = `
        <div class="auth-section__user">
          <span class="auth-section__welcome">Welcome, ${user.first_name}!</span>
