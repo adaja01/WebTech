@@ -8,7 +8,7 @@ const db = require("./db.js");
 const bcrypt = require("bcrypt");
 
 const app = express();
-const PORT = 3000;
+const PORT = 8041;
 
 const baseRouter = express.Router();
 
