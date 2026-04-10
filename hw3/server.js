@@ -540,7 +540,7 @@ baseRouter.get("/api/games/admin/scores", requireAdmin, (req, res) => {
   );
 });
 
-app.use("/group41", baseRouter);
+app.use("/", baseRouter);
 
 //start server
 app.listen(PORT, () => {
