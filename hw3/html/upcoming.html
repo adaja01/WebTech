@@ -104,17 +104,17 @@
         const games = await response.json();
 
         let tbody = document.getElementById("scores-body");
-        tbody.innerHTML += games
-          .map(
-            (game) => `
-                  <tr class="member-table__row" data-team-id="${game.home_team_id}">
-                  <td class="member-table__cell">${game.date}</td>
-                  <td class="member-table__cell"><a href="team.html?id=${game.home_team_id}" target="_blank">${game.home_team}</a></td>
-                  <td class="member-table__cell"><a href="team.html?id=${game.away_team_id}" target="_blank">${game.away_team}</a></td>
-                  </tr>
-              `,
-          )
-          .join("");
+         tbody.innerHTML += games
+           .map(
+             (game) => `
+                   <tr class="member-table__row" data-team-id="${game.home_team_id}">
+                   <td class="member-table__cell">${game.date}</td>
+                   <td class="member-table__cell"><a href="team.html?id=${game.home_team_id}">${game.home_team}</a></td>
+                   <td class="member-table__cell"><a href="team.html?id=${game.away_team_id}">${game.away_team}</a></td>
+                   </tr>
+               `,
+           )
+           .join("");
         offset += 10;
         if (games.length < limit) {
           document.getElementById("load-more-btn").style.display = "none";

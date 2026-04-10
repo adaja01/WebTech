@@ -94,32 +94,42 @@
      </footer>
      <script src="../js/auth.js"></script>
      <script>
-       async function loadPlayers() {
-         const res = await fetch("/api/players");
-         const players = await res.json();
+        async function loadPlayers() {
+          const res = await fetch("/api/players");
+          const players = await res.json();
+          const user = await getCurrentUser();
 
-         const tbody = document.getElementById("players-body");
+          const tbody = document.getElementById("players-body");
 
-         tbody.innerHTML = players
-           .map(
-             (player) => `
-       <tr class="member-table__row" data-team-id="${player.team_id}">
-         <td class="member-table__cell">
-           <a href="player.html?id=${player.id}" target="_blank">
-             ${player.first_name} ${player.last_name}
-           </a>
-         </td>
-         <td class="member-table__cell">
-           <img src="${player.photo}" alt="${player.first_name} photo" class="history-article__logo">
-         </td>
-       </tr>
-     `,
-           )
-           .join("");
-         highlightFavoriteTeam();
-       }
+          // Sort players to put favorite team first
+          if (user && user.favorite_team_id) {
+            players.sort((a, b) => {
+              if (a.team_id === user.favorite_team_id) return -1;
+              if (b.team_id === user.favorite_team_id) return 1;
+              return 0;
+            });
+          }
 
-       loadPlayers();
+          tbody.innerHTML = players
+            .map(
+              (player) => `
+        <tr class="member-table__row" data-team-id="${player.team_id}">
+          <td class="member-table__cell">
+            <a href="player.html?id=${player.id}">
+              ${player.first_name} ${player.last_name}
+            </a>
+          </td>
+          <td class="member-table__cell">
+            <img src="${player.photo}" alt="${player.first_name} photo" class="history-article__logo">
+          </td>
+        </tr>
+      `,
+            )
+            .join("");
+          highlightFavoriteTeam();
+        }
+
+        loadPlayers();
      </script>
   </body>
 </html>

@@ -94,19 +94,19 @@
           const tbody = document.getElementById("players-body");
 
           tbody.innerHTML = players
-            .map(
-              (p) => `
-      <tr class="member-table__row">
-        <td class="member-table__cell">
-          <a href="player.html?id=${p.id}" target="_blank">
-            ${p.first_name} ${p.last_name}
-          </a>
-        </td>
-        <td class="member-table__cell">${p.role}</td>
-      </tr>
-    `,
-            )
-            .join("");
+             .map(
+               (p) => `
+       <tr class="member-table__row">
+         <td class="member-table__cell">
+           <a href="player.html?id=${p.id}">
+             ${p.first_name} ${p.last_name}
+           </a>
+         </td>
+         <td class="member-table__cell">${p.role}</td>
+       </tr>
+     `,
+             )
+             .join("");
         });
     </script>
   </body>

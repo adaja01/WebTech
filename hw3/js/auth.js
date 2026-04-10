@@ -110,6 +110,7 @@ async function updateProfile(updates) {
 /**
  * Build and insert header with auth UI based on user session state
  * Handles both guest and logged-in user displays
+ * Only inserts on pages with main navigation (not on team detail pages)
  */
 async function initializeHeader() {
   const user = await getCurrentUser();
@@ -120,28 +121,36 @@ async function initializeHeader() {
     return;
   }
 
+  // Only add auth section to headers with the main nav (not team-specific pages)
+  const mainNav = headerContainer.querySelector(".nav:not(.team-nav)");
+  if (!mainNav) {
+    return; // Skip adding auth section on team detail pages
+  }
+
   // Create auth section in header
   const authSection = document.createElement("div");
   authSection.className = "auth-section";
 
   if (user) {
-    // Logged-in user UI
-    authSection.innerHTML = `
-      <div class="auth-section__user">
-        <span class="auth-section__welcome">Welcome, ${user.first_name}!</span>
-        <a href="profile.html" class="auth-section__link">Profile</a>
-        <button class="auth-section__logout-btn" onclick="handleLogout()">Logout</button>
-      </div>
-    `;
-  } else {
-    // Guest UI
-    authSection.innerHTML = `
-      <div class="auth-section__guest">
-        <a href="login.html" class="auth-section__link">Login</a>
-        <a href="register.html" class="auth-section__link">Register</a>
-      </div>
-    `;
-  }
+     // Logged-in user UI
+     const adminLink = user.is_admin ? `<a href="admin.html" class="auth-section__link">Admin</a>` : "";
+     authSection.innerHTML = `
+       <div class="auth-section__user">
+         <span class="auth-section__welcome">Welcome, ${user.first_name}!</span>
+         <a href="profile.html" class="auth-section__link">Profile</a>
+         ${adminLink}
+         <button class="auth-section__logout-btn" onclick="handleLogout()">Logout</button>
+       </div>
+     `;
+   } else {
+     // Guest UI
+     authSection.innerHTML = `
+       <div class="auth-section__guest">
+         <a href="login.html" class="auth-section__link">Login</a>
+         <a href="register.html" class="auth-section__link">Register</a>
+       </div>
+     `;
+   }
 
   headerContainer.insertBefore(authSection, headerContainer.firstChild);
 }
