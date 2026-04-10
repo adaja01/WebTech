@@ -69,14 +69,14 @@
       document.getElementById("info-link").href = `team.html?id=${teamId}`;
       document.getElementById("players-link").href =
         `team-players.html?id=${teamId}`;
-      document.getElementById("games-link").href =
-        `team-games.html?id=${teamId}`;
+       document.getElementById("games-link").href =
+         `team-games.html?id=${teamId}`;
 
-      fetch(`/api/teams/${teamId}`)
-        .then((res) => res.json())
-        .then((team) => {
-          document.getElementById("team-name").textContent = team.name;
-        });
+       apiCall(`/api/teams/${teamId}`)
+         .then((res) => res.json())
+         .then((team) => {
+           document.getElementById("team-name").textContent = team.name;
+         });
     </script>
   </body>
 </html>

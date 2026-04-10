@@ -163,10 +163,10 @@
       /**
        * Load teams from API and populate select dropdown
        */
-      async function loadTeams() {
-        try {
-          const response = await fetch("/api/teams");
-          const teams = await response.json();
+       async function loadTeams() {
+         try {
+           const response = await apiCall("/api/teams");
+           const teams = await response.json();
           const select = document.getElementById("favorite-team");
 
           teams.forEach((team) => {

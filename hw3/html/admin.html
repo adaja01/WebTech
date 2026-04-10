@@ -199,9 +199,9 @@
       /**
        * Load upcoming games and create score forms
        */
-      async function loadUpcomingGames() {
-        try {
-          const response = await fetch("/api/games/admin/upcoming");
+       async function loadUpcomingGames() {
+         try {
+           const response = await apiCall("/api/games/admin/upcoming");
           const games = await response.json();
 
           const container = document.getElementById("upcoming-games-container");
@@ -279,17 +279,17 @@
           return;
         }
 
-        try {
-          const response = await fetch(`/api/games/${gameId}/score`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              home_score: homeScore,
-              away_score: awayScore,
-            }),
-          });
+         try {
+           const response = await apiCall(`/api/games/${gameId}/score`, {
+             method: "PUT",
+             headers: {
+               "Content-Type": "application/json",
+             },
+             body: JSON.stringify({
+               home_score: homeScore,
+               away_score: awayScore,
+             }),
+           });
 
           const result = await response.json();
 
@@ -311,10 +311,10 @@
       /**
        * Load teams for the add player form
        */
-      async function loadTeamsForForm() {
-        try {
-          const response = await fetch("/api/teams");
-          const teams = await response.json();
+       async function loadTeamsForForm() {
+         try {
+           const response = await apiCall("/api/teams");
+           const teams = await response.json();
           const select = document.getElementById("add-team");
 
           select.innerHTML = teams
@@ -344,12 +344,12 @@
             team_id: parseInt(document.getElementById("add-team").value),
           };
 
-          try {
-            const response = await fetch("/api/players", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
+           try {
+             const response = await apiCall("/api/players", {
+               method: "POST",
+               headers: {
+                 "Content-Type": "application/json",
+               },
               body: JSON.stringify(playerData),
             });
 
@@ -374,10 +374,10 @@
       /**
        * Load players for management section
        */
-      async function loadPlayersForManagement() {
-        try {
-          const response = await fetch("/api/players");
-          const players = await response.json();
+       async function loadPlayersForManagement() {
+         try {
+           const response = await apiCall("/api/players");
+           const players = await response.json();
 
           const container = document.getElementById("players-management-container");
 
@@ -431,13 +431,13 @@
           return;
         }
 
-        try {
-          const response = await fetch(`/api/players/${playerId}`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+         try {
+           const response = await apiCall(`/api/players/${playerId}`, {
+             method: "DELETE",
+             headers: {
+               "Content-Type": "application/json",
+             },
+           });
 
           const result = await response.json();
 

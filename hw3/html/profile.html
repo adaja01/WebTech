@@ -183,11 +183,11 @@
 
         profileForm.style.display = "block";
 
-        // Load teams for dropdown
-        try {
-          const response = await fetch("/api/teams");
-          const teams = await response.json();
-          const select = document.getElementById("favorite-team");
+         // Load teams for dropdown
+         try {
+           const response = await apiCall("/api/teams");
+           const teams = await response.json();
+           const select = document.getElementById("favorite-team");
 
           teams.forEach((team) => {
             const option = document.createElement("option");

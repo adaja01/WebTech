@@ -88,9 +88,9 @@
          group 41
        </p>
       </footer>
-      <script>
-        async function loadTeams() {
-          const res = await fetch("/api/teams");
+       <script>
+         async function loadTeams() {
+           const res = await apiCall("/api/teams");
           const teams = await res.json();
           const user = await getCurrentUser();
 

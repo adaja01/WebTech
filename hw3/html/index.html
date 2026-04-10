@@ -95,7 +95,7 @@
     </footer>
     <script>
       async function loadLeaderboard() {
-        const response = await fetch(`/api/leaderboard`);
+        const response = await apiCall(`/api/leaderboard`);
         const games = await response.json();
         let tbody = document.getElementById("scores-body");
          tbody.innerHTML = games

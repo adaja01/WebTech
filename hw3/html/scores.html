@@ -94,10 +94,10 @@
     <script>
       let offset = 0;
       const limit = 10;
-      async function loadMoreScores() {
-        const response = await fetch(
-          `/api/games/scores?limit=${limit}&offset=${offset}`,
-        );
+       async function loadMoreScores() {
+         const response = await apiCall(
+           `/api/games/scores?limit=${limit}&offset=${offset}`,
+         );
         const games = await response.json();
         let tbody = document.getElementById("scores-body");
         tbody.innerHTML += games

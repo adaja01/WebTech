@@ -1,9 +1,15 @@
+const API_BASE = "/group41";
+
+async function apiCall(endpoint, options = {}) {
+  return fetch(API_BASE + endpoint, options);
+}
+
 /**
  * Fetch current logged-in user from server
  */
 async function getCurrentUser() {
   try {
-    const response = await fetch("/api/me");
+    const response = await apiCall("/api/me");
     if (!response.ok) {
       return null;
     }
@@ -24,7 +30,7 @@ async function register(
   password,
   favoriteTeamId
 ) {
-  const response = await fetch("/api/register", {
+  const response = await apiCall("/api/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +51,7 @@ async function register(
  * Login user with email and password
  */
 async function login(email, password) {
-  const response = await fetch("/api/login", {
+  const response = await apiCall("/api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -63,7 +69,7 @@ async function login(email, password) {
  * Logout current user
  */
 async function logout() {
-  const response = await fetch("/api/logout", {
+  const response = await apiCall("/api/logout", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -77,7 +83,7 @@ async function logout() {
  * Update user profile
  */
 async function updateProfile(updates) {
-  const response = await fetch("/api/profile", {
+  const response = await apiCall("/api/profile", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

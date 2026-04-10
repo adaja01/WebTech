@@ -78,13 +78,13 @@
       document.getElementById("info-link").href = `team.html?id=${teamId}`;
       document.getElementById("players-link").href =
         `team-players.html?id=${teamId}`;
-      document.getElementById("games-link").href =
-        `team-games.html?id=${teamId}`;
+       document.getElementById("games-link").href =
+         `team-games.html?id=${teamId}`;
 
-      fetch(`/api/teams/${teamId}/players`)
-        .then((res) => res.json())
-        .then((players) => {
-          const tbody = document.getElementById("players-body");
+       apiCall(`/api/teams/${teamId}/players`)
+         .then((res) => res.json())
+         .then((players) => {
+           const tbody = document.getElementById("players-body");
 
           tbody.innerHTML = players
              .map(
