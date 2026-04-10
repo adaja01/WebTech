@@ -1,183 +1,39 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
       name="description"
-      content="Admin panel for managing CS2 League."
-    />
+      content="Admin panel for managing CS2 League.">
     <title>CS2 | Admin Panel</title>
 
     <!-- favicon -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../assets/favicon/apple-touch-icon.png"
-    />
+      href="../assets/favicon/apple-touch-icon.png">
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="../assets/favicon/favicon-32x32.png"
-    />
+      href="../assets/favicon/favicon-32x32.png">
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="../assets/favicon/favicon-16x16.png"
-    />
-    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+      href="../assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
 
     <!-- styles -->
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Cormorant+Garamond:ital,wght@1,300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet">
+
     <script src="../js/auth.js"></script>
-    <style>
-      .admin-section {
-        margin-bottom: var(--space-lg);
-        padding: var(--space-md);
-        background-color: var(--surface-subtle);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--border-radius-md);
-      }
-
-      .admin-section__title {
-        font-family: var(--font-secondary), serif;
-        font-size: var(--font-size-md);
-        color: var(--primary-color);
-        margin: 0 0 var(--space-md);
-        padding-bottom: var(--space-xs);
-        border-bottom: var(--border-width) solid var(--primary-color);
-      }
-
-      .game-form {
-        display: grid;
-        gap: var(--space-sm);
-        margin-bottom: var(--space-md);
-        padding: var(--space-sm);
-        background-color: var(--background-color);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--border-radius-sm);
-      }
-
-      .game-form__row {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr auto;
-        gap: var(--space-xs);
-        align-items: end;
-      }
-
-      .game-form__cell {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-xs);
-      }
-
-      .game-form__label {
-        font-size: var(--font-size-xs);
-        color: var(--muted-text-color);
-        font-weight: bold;
-      }
-
-      .game-form__input {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--border-radius-sm);
-        padding: var(--space-xs);
-        font-size: var(--font-size-xs);
-      }
-
-      .game-form__button {
-        background-color: var(--primary-color);
-        color: var(--text-color);
-        border: none;
-        padding: var(--space-xs) var(--space-sm);
-        border-radius: var(--border-radius-sm);
-        cursor: pointer;
-        font-size: var(--font-size-xs);
-        font-weight: bold;
-        transition: transform 0.2s ease;
-      }
-
-      .game-form__button:hover {
-        transform: scale(1.05);
-      }
-
-      .game-form__button--secondary {
-        background-color: #ff6b00;
-      }
-
-      .game-form__button--danger {
-        background-color: #8b0000;
-      }
-
-      .player-form {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--space-sm);
-        padding: var(--space-sm);
-        background-color: var(--background-color);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--border-radius-sm);
-        margin-bottom: var(--space-md);
-      }
-
-      .player-form__buttons {
-        grid-column: 1 / -1;
-        display: flex;
-        gap: var(--space-xs);
-        justify-content: flex-end;
-      }
-
-      .admin-message {
-        padding: var(--space-sm);
-        border-radius: var(--border-radius-sm);
-        margin-bottom: var(--space-md);
-        font-size: var(--font-size-sm);
-      }
-
-      .admin-message--success {
-        background-color: rgba(0, 255, 0, 0.2);
-        border: 1px solid #00ff00;
-        color: #00ff00;
-      }
-
-      .admin-message--error {
-        background-color: rgba(255, 0, 0, 0.2);
-        border: 1px solid var(--primary-color);
-        color: var(--primary-color);
-      }
-
-      .access-denied {
-        text-align: center;
-        padding: var(--space-lg);
-      }
-
-      .access-denied__title {
-        font-family: var(--font-primary), sans-serif;
-        font-size: var(--font-size-md);
-        color: var(--primary-color);
-        margin-bottom: var(--space-sm);
-      }
-
-      .access-denied__link {
-        color: var(--primary-color);
-        text-decoration: underline;
-      }
-
-      @media (max-width: 768px) {
-        .game-form__row {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
   </head>
   <body>
     <header>
@@ -248,8 +104,7 @@
                 type="text"
                 id="add-first-name"
                 required
-                class="game-form__input"
-              />
+                class="game-form__input">
             </div>
             <div class="player-form__group">
               <label for="add-last-name" class="form-label">Last Name:</label>
@@ -257,52 +112,48 @@
                 type="text"
                 id="add-last-name"
                 required
-                class="game-form__input"
-              />
+                class="game-form__input">
             </div>
             <div class="player-form__group">
               <label for="add-nationality" class="form-label">Nationality:</label>
               <input
                 type="text"
                 id="add-nationality"
-                class="game-form__input"
-              />
+                class="game-form__input">
             </div>
             <div class="player-form__group">
               <label for="add-dob" class="form-label">Date of Birth:</label>
               <input
                 type="date"
                 id="add-dob"
-                class="game-form__input"
-              />
+                class="game-form__input">
             </div>
             <div class="player-form__group">
               <label for="add-role" class="form-label">Role:</label>
               <input
                 type="text"
                 id="add-role"
-                class="game-form__input"
-              />
+                class="game-form__input">
             </div>
             <div class="player-form__group">
               <label for="add-number" class="form-label">Number:</label>
               <input
                 type="number"
                 id="add-number"
-                class="game-form__input"
-              />
+                class="game-form__input">
             </div>
             <div class="player-form__group">
               <label for="add-photo" class="form-label">Photo URL:</label>
               <input
                 type="text"
                 id="add-photo"
-                class="game-form__input"
-              />
+                class="game-form__input">
             </div>
             <div class="player-form__group">
               <label for="add-team" class="form-label">Team:</label>
-              <select id="add-team" required class="game-form__input"></select>
+              <select id="add-team" required class="game-form__input">
+                <option value="" disabled selected>Select a team</option>
+              </select>
             </div>
             <div class="player-form__buttons">
               <button type="submit" class="game-form__button">Add Player</button>
@@ -340,9 +191,9 @@
         }
 
         adminContent.style.display = "block";
-        loadUpcomingGames();
-        loadTeamsForForm();
-        loadPlayersForManagement();
+        await loadUpcomingGames();
+        await loadTeamsForForm();
+        await loadPlayersForManagement();
       }
 
       /**

@@ -1,12 +1,5 @@
 /**
- * auth.js - Client-side authentication and user session management
- * Handles login, logout, registration, and user session state
- * Provides utilities for updating UI based on user role and favorite team
- */
-
-/**
  * Fetch current logged-in user from server
- * @returns {Promise<Object|null>} User object if logged in, null otherwise
  */
 async function getCurrentUser() {
   try {
@@ -23,12 +16,6 @@ async function getCurrentUser() {
 
 /**
  * Register a new user account
- * @param {string} firstName - User's first name
- * @param {string} lastName - User's last name
- * @param {string} email - User's email (login)
- * @param {string} password - User's password
- * @param {number} favoriteTeamId - ID of user's favorite team
- * @returns {Promise<Object>} Response object with message or error
  */
 async function register(
   firstName,
@@ -56,9 +43,6 @@ async function register(
 
 /**
  * Login user with email and password
- * @param {string} email - User's email
- * @param {string} password - User's password
- * @returns {Promise<Object>} Response object with user data or error
  */
 async function login(email, password) {
   const response = await fetch("/api/login", {
@@ -77,7 +61,6 @@ async function login(email, password) {
 
 /**
  * Logout current user
- * @returns {Promise<Object>} Response object with message
  */
 async function logout() {
   const response = await fetch("/api/logout", {
@@ -92,8 +75,6 @@ async function logout() {
 
 /**
  * Update user profile
- * @param {Object} updates - Object containing fields to update (first_name, last_name, email, new_pw, current_pw, favorite_team_id)
- * @returns {Promise<Object>} Response object with message or error
  */
 async function updateProfile(updates) {
   const response = await fetch("/api/profile", {
@@ -107,11 +88,6 @@ async function updateProfile(updates) {
   return await response.json();
 }
 
-/**
- * Build and insert header with auth UI based on user session state
- * Handles both guest and logged-in user displays
- * Only inserts on pages with main navigation (not on team detail pages)
- */
 async function initializeHeader() {
   const user = await getCurrentUser();
   const headerContainer = document.querySelector("header");
@@ -165,10 +141,6 @@ async function handleLogout() {
 
 /**
  * Get CSS class name for highlighting favorite team
- * Used to apply special styling to user's favorite team
- * @param {number} teamId - The team ID to check
- * @param {Object} user - Current user object
- * @returns {string} CSS class name or empty string
  */
 function getFavoriteTeamClass(teamId, user) {
   if (user && user.favorite_team_id === teamId) {
@@ -179,7 +151,6 @@ function getFavoriteTeamClass(teamId, user) {
 
 /**
  * Highlight all elements related to user's favorite team
- * Applies "favorite-team" class to team rows, player rows, etc.
  */
 async function highlightFavoriteTeam() {
   const user = await getCurrentUser();
